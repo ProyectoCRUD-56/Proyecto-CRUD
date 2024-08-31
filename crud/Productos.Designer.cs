@@ -74,7 +74,7 @@
             button2.TabIndex = 12;
             button2.Text = "Editar";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += Editar_Click;
             // 
             // button3
             // 
@@ -85,7 +85,7 @@
             button3.TabIndex = 13;
             button3.Text = "Borrar";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += Borrar_Click;
             // 
             // groupBox1
             // 
@@ -185,7 +185,7 @@
             button1.TabIndex = 22;
             button1.Text = "Guardar";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Guardar_Click;
             // 
             // label5
             // 

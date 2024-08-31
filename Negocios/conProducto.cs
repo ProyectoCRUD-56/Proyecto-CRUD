@@ -28,7 +28,7 @@ namespace Negocios
         }
         public void EliminarPRod(string id)
         {
-            Productos.Eliminar_SP(Convert.ToInt32(id));
+            Productos.Eliminar(Convert.ToInt32(id));
         }
 
         public string getNombre(int id)

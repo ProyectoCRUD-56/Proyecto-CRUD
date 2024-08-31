@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    internal class modClientes
+    public class modClientes
     {
         private Conexion conexion = new Conexion();
 
@@ -21,12 +21,11 @@ namespace Datos
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "select * from Clientes";
+            comando.CommandText = "select * from Clientes WHERE Activo = 1";
             buffer = comando.ExecuteReader();
             tabla.Load(buffer);
             conexion.CerrarConexion();
             return tabla;
-
         }
 
         public Int32 contarCliente()
@@ -79,6 +78,17 @@ namespace Datos
             comando.Parameters.AddWithValue("@telefono", telefono);
             comando.Parameters.AddWithValue("@email", email);
             comando.Parameters.AddWithValue("@id", id);
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+        }
+
+        public void EliminarCliente(int idcli)
+        {
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "UPDATE Clientes  SET Activo = 0  WHERE Id_cliente = @idcli";
+            comando.CommandType = CommandType.Text;
+            comando.Parameters.AddWithValue("@idcli", idcli);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.CerrarConexion();

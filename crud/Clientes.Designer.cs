@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            comboBox1 = new ComboBox();
+            label7 = new Label();
             label6 = new Label();
             txtCedula = new TextBox();
-            button1 = new Button();
+            GuardarBtn = new Button();
             label5 = new Label();
             txtCorreo = new TextBox();
             label4 = new Label();
@@ -42,8 +44,8 @@
             txtApellido = new TextBox();
             label1 = new Label();
             txtNombre = new TextBox();
-            button3 = new Button();
-            button2 = new Button();
+            BorrarBtn = new Button();
+            EditarBtn = new Button();
             dataGridView1 = new DataGridView();
             groupBox3 = new GroupBox();
             button6 = new Button();
@@ -51,8 +53,6 @@
             numericUpDown2 = new NumericUpDown();
             label10 = new Label();
             textBox2 = new TextBox();
-            label7 = new Label();
-            comboBox1 = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox3.SuspendLayout();
@@ -65,7 +65,7 @@
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txtCedula);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(GuardarBtn);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(txtCorreo);
             groupBox1.Controls.Add(label4);
@@ -83,7 +83,25 @@
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Clientes";
-            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Masculino", "Femenino" });
+            comboBox1.Location = new Point(13, 370);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(193, 23);
+            comboBox1.TabIndex = 26;
+            comboBox1.Text = "Seleccione una opcion";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 352);
+            label7.Name = "label7";
+            label7.Size = new Size(35, 15);
+            label7.TabIndex = 25;
+            label7.Text = "Sexo:";
             // 
             // label6
             // 
@@ -93,7 +111,6 @@
             label6.Size = new Size(47, 15);
             label6.TabIndex = 24;
             label6.Text = "Cedula:";
-            label6.Click += label6_Click;
             // 
             // txtCedula
             // 
@@ -102,15 +119,15 @@
             txtCedula.Size = new Size(194, 23);
             txtCedula.TabIndex = 23;
             // 
-            // button1
+            // GuardarBtn
             // 
-            button1.Location = new Point(12, 455);
-            button1.Name = "button1";
-            button1.Size = new Size(194, 33);
-            button1.TabIndex = 22;
-            button1.Text = "Guardar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            GuardarBtn.Location = new Point(12, 455);
+            GuardarBtn.Name = "GuardarBtn";
+            GuardarBtn.Size = new Size(194, 33);
+            GuardarBtn.TabIndex = 22;
+            GuardarBtn.Text = "Guardar";
+            GuardarBtn.UseVisualStyleBackColor = true;
+            GuardarBtn.Click += GuardarBtn_Click;
             // 
             // label5
             // 
@@ -192,25 +209,27 @@
             txtNombre.Size = new Size(194, 23);
             txtNombre.TabIndex = 12;
             // 
-            // button3
+            // BorrarBtn
             // 
-            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button3.Location = new Point(381, 356);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 35);
-            button3.TabIndex = 17;
-            button3.Text = "Borrar";
-            button3.UseVisualStyleBackColor = true;
+            BorrarBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            BorrarBtn.Location = new Point(381, 356);
+            BorrarBtn.Name = "BorrarBtn";
+            BorrarBtn.Size = new Size(112, 35);
+            BorrarBtn.TabIndex = 17;
+            BorrarBtn.Text = "Borrar";
+            BorrarBtn.UseVisualStyleBackColor = true;
+            BorrarBtn.Click += BorrarBtn_Click;
             // 
-            // button2
+            // EditarBtn
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button2.Location = new Point(263, 358);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 35);
-            button2.TabIndex = 16;
-            button2.Text = "Editar";
-            button2.UseVisualStyleBackColor = true;
+            EditarBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            EditarBtn.Location = new Point(263, 358);
+            EditarBtn.Name = "EditarBtn";
+            EditarBtn.Size = new Size(112, 35);
+            EditarBtn.TabIndex = 16;
+            EditarBtn.Text = "Editar";
+            EditarBtn.UseVisualStyleBackColor = true;
+            EditarBtn.Click += EditarBtn_Click;
             // 
             // dataGridView1
             // 
@@ -277,25 +296,6 @@
             textBox2.Size = new Size(186, 23);
             textBox2.TabIndex = 25;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 352);
-            label7.Name = "label7";
-            label7.Size = new Size(35, 15);
-            label7.TabIndex = 25;
-            label7.Text = "Sexo:";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Masculino", "Femenino" });
-            comboBox1.Location = new Point(13, 370);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(193, 23);
-            comboBox1.TabIndex = 26;
-            comboBox1.Text = "Seleccione una opcion";
-            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -303,8 +303,8 @@
             ClientSize = new Size(874, 500);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(BorrarBtn);
+            Controls.Add(EditarBtn);
             Controls.Add(dataGridView1);
             Name = "Clientes";
             Text = "Clientes";
@@ -321,7 +321,7 @@
         #endregion
 
         private GroupBox groupBox1;
-        private Button button1;
+        private Button GuardarBtn;
         private Label label5;
         private TextBox txtCorreo;
         private Label label4;
@@ -332,8 +332,8 @@
         private TextBox txtApellido;
         private Label label1;
         private TextBox txtNombre;
-        private Button button3;
-        private Button button2;
+        private Button BorrarBtn;
+        private Button EditarBtn;
         private DataGridView dataGridView1;
         private GroupBox groupBox3;
         private Button button6;

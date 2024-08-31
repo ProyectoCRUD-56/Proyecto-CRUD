@@ -24,7 +24,7 @@ namespace crud
             dataGridView1.DataSource = objeto.MostrarProd();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
             if (Editar == false)
@@ -68,7 +68,7 @@ namespace crud
             txtNombre.Clear();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Editar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
@@ -84,7 +84,7 @@ namespace crud
                 MessageBox.Show("seleccione una fila por favor");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Borrar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
@@ -97,21 +97,6 @@ namespace crud
                 MessageBox.Show("seleccione una fila por favor");
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             txtResult.Text = Producto.getNombre((int)numericUpDown1.Value);
@@ -121,5 +106,7 @@ namespace crud
         {
             txtResult.Text = Convert.ToString(Producto.Contar());
         }
+
+        
     }
 }

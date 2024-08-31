@@ -137,7 +137,7 @@ namespace Datos
         public void Eliminar(int idpro)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "delete from Productos where Id=@idpro";
+            comando.CommandText = "UPDATE Productos  SET Activo = 0  WHERE Id_producto = @idpro";
             comando.CommandType = CommandType.Text;
             comando.Parameters.AddWithValue("@idpro", idpro);
             comando.ExecuteNonQuery();
