@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class Crud : Form
+    public partial class Login : Form
     {
-        public Crud()
+        public Login()
         {
             InitializeComponent();
         }
