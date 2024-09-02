@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="DBConsultasLR.cs" />
     <Compile Include="modClientes.cs" />
     <Compile Include="modProductos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
