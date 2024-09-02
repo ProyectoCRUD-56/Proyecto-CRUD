@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class Login
+    partial class Crud
     {
         /// <summary>
         /// Required designer variable.
