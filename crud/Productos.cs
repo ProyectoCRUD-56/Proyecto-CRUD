@@ -1,4 +1,5 @@
 using Negocios;
+using Presentacion;
 
 namespace crud
 {
@@ -7,10 +8,12 @@ namespace crud
         private conProducto Producto = new conProducto();
         private string idProducto = null;
         private bool Editar = false;
+        
 
         public frmMain()
         {
             InitializeComponent();
+            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -107,6 +110,16 @@ namespace crud
             txtResult.Text = Convert.ToString(Producto.Contar());
         }
 
-        
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Usuarios usuarios = new Usuarios();
+            usuarios.Show();
+            this.Hide();
+        }
+
+        private void Close_Windows(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

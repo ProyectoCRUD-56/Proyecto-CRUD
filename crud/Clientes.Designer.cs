@@ -53,6 +53,7 @@
             numericUpDown2 = new NumericUpDown();
             label10 = new Label();
             textBox2 = new TextBox();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox3.SuspendLayout();
@@ -296,11 +297,22 @@
             textBox2.Size = new Size(186, 23);
             textBox2.TabIndex = 25;
             // 
+            // button1
+            // 
+            button1.Location = new Point(263, 422);
+            button1.Name = "button1";
+            button1.Size = new Size(98, 34);
+            button1.TabIndex = 27;
+            button1.Text = "Producto";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
+            Controls.Add(button1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
             Controls.Add(BorrarBtn);
@@ -345,5 +357,6 @@
         private TextBox txtCedula;
         private ComboBox comboBox1;
         private Label label7;
+        private Button button1;
     }
 }

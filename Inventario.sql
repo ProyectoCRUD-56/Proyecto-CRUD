@@ -143,3 +143,5 @@ GO
 
 -- Eliminar un producto (marcarlo como inactivo)
 --EXEC EliminarProducto @idpro = 2;
+
+insert into Clientes values ('Juan','Mona','cr 45 56 67','3106824071','juanpablo@gmail.com',1)

@@ -1,4 +1,6 @@
-﻿using Negocios;
+﻿using crud;
+using Datos;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -106,5 +108,14 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmMain Productos = new frmMain();
+            Productos.Show();
+            this.Hide();
+        }
+
+        
     }
 }
