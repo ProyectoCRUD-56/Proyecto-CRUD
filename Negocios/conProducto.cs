@@ -15,7 +15,7 @@ namespace Negocios
         public DataTable MostrarProd()
         {
             DataTable tabla = new DataTable();
-            tabla = Productos.Mostrar_SP();
+            tabla = Productos.Mostrar();
             return tabla;
         }
         public void InsertarPRod(string nombre, string desc, string marca, string precio, string stock)
