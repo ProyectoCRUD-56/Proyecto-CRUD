@@ -20,11 +20,11 @@ namespace Negocios
         }
         public void InsertarPRod(string nombre, string desc, string marca, string precio, string stock)
         {
-            Productos.Insertar_SP(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock));
+            Productos.Insertar(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock));
         }
         public void EditarProd(string nombre, string desc, string marca, string precio, string stock, string id)
         {
-            Productos.Editar_SP(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), Convert.ToInt32(id));
+            Productos.Editar(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), Convert.ToInt32(id));
         }
         public void EliminarPRod(string id)
         {
