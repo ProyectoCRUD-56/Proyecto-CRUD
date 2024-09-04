@@ -16,18 +16,7 @@ namespace Datos
 
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
-        public DataTable Mostrar_SP()
-        {
-
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "MostrarProductos";
-            comando.CommandType = CommandType.StoredProcedure;
-            buffer = comando.ExecuteReader();
-            tabla.Load(buffer);
-            conexion.CerrarConexion();
-            return tabla;
-
-        }
+      
         public DataTable Mostrar()
         {
 
@@ -64,20 +53,7 @@ namespace Datos
             conexion.CerrarConexion();
             return (nombre);        
         }
-        public void Insertar_SP(string nombre, string desc, string marca, double precio, int stock)
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "InsertarProductos";
-            comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombre", nombre);
-            comando.Parameters.AddWithValue("@descrip", desc);
-            comando.Parameters.AddWithValue("@marca", marca);
-            comando.Parameters.AddWithValue("@precio", precio);
-            comando.Parameters.AddWithValue("@stock", stock);
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
-            conexion.CerrarConexion();
-        }
+ 
 
         public void Insertar(string nombre, string desc, string marca, double precio, int stock)
         {
@@ -92,21 +68,7 @@ namespace Datos
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
-        public void Editar_SP(string nombre, string desc, string marca, double precio, int stock, int id)
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "EditarProductos";
-            comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombre", nombre);
-            comando.Parameters.AddWithValue("@descrip", desc);
-            comando.Parameters.AddWithValue("@Marca", marca);
-            comando.Parameters.AddWithValue("@precio", precio);
-            comando.Parameters.AddWithValue("@stock", stock);
-            comando.Parameters.AddWithValue("@id", id);
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
-            conexion.CerrarConexion();
-        }
+
 
         public void Editar(string nombre, string desc, string marca, double precio, int stock, int id)
         {
@@ -123,16 +85,7 @@ namespace Datos
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
-        public void Eliminar_SP(int id)
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "EliminarProducto";
-            comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@idpro", id);
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
-            conexion.CerrarConexion();
-        }        
+       
         
         public void Eliminar(int idpro)
         {
