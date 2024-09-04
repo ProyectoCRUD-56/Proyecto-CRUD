@@ -1,4 +1,6 @@
-﻿using Negocios;
+﻿using crud;
+using Datos;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -50,10 +53,33 @@ namespace Presentacion
             {
                 try
                 {
-                    cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarClientes();
-                    limpiarForm();
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            if (Validar_solo_numero())
+                            {
+                                cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text);
+                                MessageBox.Show("se inserto correctamente");
+                                MostrarClientes();
+                                limpiarForm();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cedula o Telefono incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(" Nombre o Apellido incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -106,5 +132,45 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmMain Productos = new frmMain();
+            Productos.Show();
+            this.Hide();
+        }
+
+        private bool Validar_campos_vacios()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text)
+                || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtCorreo.Text)
+                || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtTelefono.Text)
+                || comboBox1.SelectedIndex == -1)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool Validar_solo_letras()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z]*$") ||
+                !System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z]*$"))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool Validar_solo_numero()
+        {
+            if ((System.Text.RegularExpressions.Regex.IsMatch(txtCedula.Text, @"^\d*$") && (txtCedula.Text.Length > 6 && txtCedula.Text.Length <= 11)) &&
+                (System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d*$") && (txtTelefono.Text.Length == 10)))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
