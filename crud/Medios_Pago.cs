@@ -109,5 +109,12 @@ namespace Presentacion
             txtDetalles.Clear();
             txtMetodo.Clear();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Clientes cliente = new Clientes();
+            cliente.Show();
+            this.Hide();
+        }
     }
 }

@@ -47,7 +47,6 @@
             txtNombre = new TextBox();
             groupBox2 = new GroupBox();
             button5 = new Button();
-            button4 = new Button();
             label7 = new Label();
             numericUpDown1 = new NumericUpDown();
             label6 = new Label();
@@ -71,7 +70,7 @@
             // button2
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button2.Location = new Point(238, 356);
+            button2.Location = new Point(263, 356);
             button2.Name = "button2";
             button2.Size = new Size(112, 35);
             button2.TabIndex = 12;
@@ -125,11 +124,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(13, 294);
+            label8.Location = new Point(12, 300);
             label8.Name = "label8";
-            label8.Size = new Size(58, 15);
+            label8.Size = new Size(61, 15);
             label8.TabIndex = 23;
-            label8.Text = "Categoria";
+            label8.Text = "Categoria:";
             // 
             // button1
             // 
@@ -226,7 +225,6 @@
             // 
             groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(button4);
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(numericUpDown1);
             groupBox2.Controls.Add(label6);
@@ -247,16 +245,6 @@
             button5.Text = "Nombre";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(108, 75);
-            button4.Name = "button4";
-            button4.Size = new Size(95, 31);
-            button4.TabIndex = 29;
-            button4.Text = "Contar";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // label7
             // 
@@ -293,11 +281,11 @@
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button6.Location = new Point(511, 355);
+            button6.Location = new Point(499, 357);
             button6.Name = "button6";
             button6.Size = new Size(102, 36);
             button6.TabIndex = 15;
-            button6.Text = "Clientes";
+            button6.Text = "Categorias";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
@@ -342,7 +330,6 @@
         private TextBox txtNombre;
         private GroupBox groupBox2;
         private Button button5;
-        private Button button4;
         private Label label7;
         private NumericUpDown numericUpDown1;
         private Label label6;

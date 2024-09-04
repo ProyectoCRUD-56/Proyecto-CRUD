@@ -112,8 +112,8 @@ namespace crud
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Usuarios usuarios = new Usuarios();
-            usuarios.Show();
+            Categoria_Producto categoria = new Categoria_Producto();
+            categoria.Show();
             this.Hide();
         }
 

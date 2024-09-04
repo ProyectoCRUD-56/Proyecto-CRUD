@@ -52,12 +52,14 @@
             // 
             // button6
             // 
-            button6.Location = new Point(500, 449);
+            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button6.Location = new Point(474, 347);
             button6.Name = "button6";
-            button6.Size = new Size(102, 36);
+            button6.Size = new Size(120, 36);
             button6.TabIndex = 20;
-            button6.Text = "Clientes";
+            button6.Text = "Medios de Pago";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // groupBox1
             // 
@@ -76,6 +78,7 @@
             // 
             // Guardar
             // 
+            Guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Guardar.Location = new Point(12, 461);
             Guardar.Name = "Guardar";
             Guardar.Size = new Size(194, 33);
@@ -119,7 +122,7 @@
             // Borrar
             // 
             Borrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            Borrar.Location = new Point(382, 449);
+            Borrar.Location = new Point(356, 347);
             Borrar.Name = "Borrar";
             Borrar.Size = new Size(112, 35);
             Borrar.TabIndex = 18;
@@ -130,7 +133,7 @@
             // Editar
             // 
             Editar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            Editar.Location = new Point(264, 449);
+            Editar.Location = new Point(238, 347);
             Editar.Name = "Editar";
             Editar.Size = new Size(112, 35);
             Editar.TabIndex = 17;
@@ -149,7 +152,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Anchor = AnchorStyles.None;
+            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBox2.Controls.Add(Buscar_Nombre);
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(numericUpDown1);

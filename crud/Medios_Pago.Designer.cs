@@ -43,6 +43,7 @@
             Borrar = new Button();
             Editar = new Button();
             dataGridView1 = new DataGridView();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -66,6 +67,7 @@
             // 
             // Guardar
             // 
+            Guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Guardar.Location = new Point(12, 461);
             Guardar.Name = "Guardar";
             Guardar.Size = new Size(194, 33);
@@ -108,7 +110,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Anchor = AnchorStyles.None;
+            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBox2.Controls.Add(Buscar_Metodo);
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(numericUpDown1);
@@ -166,7 +168,7 @@
             // Borrar
             // 
             Borrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            Borrar.Location = new Point(381, 356);
+            Borrar.Location = new Point(371, 358);
             Borrar.Name = "Borrar";
             Borrar.Size = new Size(112, 35);
             Borrar.TabIndex = 18;
@@ -194,11 +196,23 @@
             dataGridView1.Size = new Size(636, 341);
             dataGridView1.TabIndex = 16;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.Location = new Point(489, 358);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 35);
+            button1.TabIndex = 26;
+            button1.Text = "Clientes";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Medios_Pago
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
+            Controls.Add(button1);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(Borrar);
@@ -233,5 +247,6 @@
         private Button Borrar;
         private Button Editar;
         private DataGridView dataGridView1;
+        private Button button1;
     }
 }

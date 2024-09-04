@@ -122,6 +122,7 @@
             // 
             // GuardarBtn
             // 
+            GuardarBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             GuardarBtn.Location = new Point(12, 455);
             GuardarBtn.Name = "GuardarBtn";
             GuardarBtn.Size = new Size(194, 33);
@@ -243,13 +244,13 @@
             // 
             // groupBox3
             // 
-            groupBox3.Anchor = AnchorStyles.Left;
+            groupBox3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBox3.Controls.Add(button6);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(numericUpDown2);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(textBox2);
-            groupBox3.Location = new Point(560, 347);
+            groupBox3.Location = new Point(636, 347);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(226, 144);
             groupBox3.TabIndex = 26;
@@ -299,7 +300,8 @@
             // 
             // button1
             // 
-            button1.Location = new Point(263, 422);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.Location = new Point(499, 356);
             button1.Name = "button1";
             button1.Size = new Size(98, 34);
             button1.TabIndex = 27;

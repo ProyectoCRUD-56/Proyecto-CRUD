@@ -108,5 +108,12 @@ namespace Presentacion
         {
             txtResult.Text = categoria.getNombre((int)numericUpDown1.Value);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Medios_Pago pago = new Medios_Pago();
+            pago.Show();
+            this.Hide();
+        }
     }
 }
