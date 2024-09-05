@@ -34,19 +34,11 @@
             txtDetalles = new TextBox();
             label1 = new Label();
             txtMetodo = new TextBox();
-            groupBox2 = new GroupBox();
-            Buscar_Metodo = new Button();
-            label7 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            label6 = new Label();
-            txtResult = new TextBox();
             Borrar = new Button();
             Editar = new Button();
             dataGridView1 = new DataGridView();
             button1 = new Button();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -108,63 +100,6 @@
             txtMetodo.Size = new Size(194, 23);
             txtMetodo.TabIndex = 12;
             // 
-            // groupBox2
-            // 
-            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            groupBox2.Controls.Add(Buscar_Metodo);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(numericUpDown1);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(txtResult);
-            groupBox2.Location = new Point(636, 347);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(226, 144);
-            groupBox2.TabIndex = 25;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Comandos";
-            // 
-            // Buscar_Metodo
-            // 
-            Buscar_Metodo.Location = new Point(108, 43);
-            Buscar_Metodo.Name = "Buscar_Metodo";
-            Buscar_Metodo.Size = new Size(95, 31);
-            Buscar_Metodo.TabIndex = 30;
-            Buscar_Metodo.Text = "Metodo";
-            Buscar_Metodo.UseVisualStyleBackColor = true;
-            Buscar_Metodo.Click += Buscar_Metodo_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(17, 31);
-            label7.Name = "label7";
-            label7.Size = new Size(18, 15);
-            label7.TabIndex = 28;
-            label7.Text = "ID";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(17, 49);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(75, 23);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(17, 94);
-            label6.Name = "label6";
-            label6.Size = new Size(59, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Resultado";
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(17, 112);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(186, 23);
-            txtResult.TabIndex = 25;
-            // 
             // Borrar
             // 
             Borrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -203,7 +138,7 @@
             button1.Name = "button1";
             button1.Size = new Size(112, 35);
             button1.TabIndex = 26;
-            button1.Text = "Clientes";
+            button1.Text = "Usuarios";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -213,7 +148,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
             Controls.Add(button1);
-            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(Borrar);
             Controls.Add(Editar);
@@ -223,9 +157,6 @@
             Load += Medios_Pago_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -238,12 +169,6 @@
         private TextBox txtDetalles;
         private Label label1;
         private TextBox txtMetodo;
-        private GroupBox groupBox2;
-        private Button Buscar_Metodo;
-        private Label label7;
-        private NumericUpDown numericUpDown1;
-        private Label label6;
-        private TextBox txtResult;
         private Button Borrar;
         private Button Editar;
         private DataGridView dataGridView1;

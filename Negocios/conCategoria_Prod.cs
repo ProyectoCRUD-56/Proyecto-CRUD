@@ -30,10 +30,5 @@ namespace Negocios
         {
             categoria.Eliminar(Convert.ToInt32(id));
         }
-
-        public string getNombre(int id)
-        {
-            return categoria.getNombre(id);
-        }
     }
 }

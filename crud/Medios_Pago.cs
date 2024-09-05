@@ -19,7 +19,6 @@ namespace Presentacion
         public Medios_Pago()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Guardar_Click(object sender, EventArgs e)
@@ -29,10 +28,24 @@ namespace Presentacion
             {
                 try
                 {
-                    medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarMediosPago();
-                    limpiarForm();
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
+                            MessageBox.Show("se inserto correctamente");
+                            MostrarMediosPago();
+                            limpiarForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El Metodo es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -44,15 +57,29 @@ namespace Presentacion
             {
                 try
                 {
-                    medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarMediosPago();
-                    limpiarForm();
-                    Editar_Medio = false;
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
+                            MessageBox.Show("se edito correctamente");
+                            MostrarMediosPago();
+                            limpiarForm();
+                            Editar_Medio = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("El Metodo es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
             }
         }
@@ -83,11 +110,6 @@ namespace Presentacion
                 MessageBox.Show("seleccione una fila por favor");
         }
 
-        private void Buscar_Metodo_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = medioPago.getNombre((int)numericUpDown1.Value);
-        }
-
         private void Medios_Pago_Load(object sender, EventArgs e)
         {
             MostrarMediosPago();
@@ -99,11 +121,6 @@ namespace Presentacion
             dataGridView1.DataSource = medio_Pago.MostrarMediosPago();
         }
 
-        private void Close_Windows(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void limpiarForm()
         {
             txtDetalles.Clear();
@@ -112,9 +129,27 @@ namespace Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Clientes cliente = new Clientes();
-            cliente.Show();
+            Usuarios usuario = new Usuarios();
+            usuario.Show();
             this.Hide();
+        }
+
+        private bool Validar_campos_vacios()
+        {
+            if (string.IsNullOrEmpty(txtDetalles.Text) || string.IsNullOrEmpty(txtMetodo.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool Validar_solo_letras()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtMetodo.Text, @"^[a-zA-Z\s]*$"))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -37,24 +37,21 @@
             label2 = new Label();
             txtContraseña = new TextBox();
             label1 = new Label();
-            txtUsuario = new TextBox();
-            groupBox2 = new GroupBox();
-            Buscar_usuario = new Button();
-            label7 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            label6 = new Label();
-            txtResult = new TextBox();
+            txtNombre = new TextBox();
             Borrar = new Button();
             Editar = new Button();
             dataGridView1 = new DataGridView();
+            button1 = new Button();
+            label5 = new Label();
+            txtApellido = new TextBox();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(txtApellido);
             groupBox1.Controls.Add(CbRol);
             groupBox1.Controls.Add(Guardar);
             groupBox1.Controls.Add(label4);
@@ -63,7 +60,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(txtContraseña);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(txtUsuario);
+            groupBox1.Controls.Add(txtNombre);
             groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
@@ -76,7 +73,7 @@
             // 
             CbRol.FormattingEnabled = true;
             CbRol.Items.AddRange(new object[] { "Administrador", "Empleado" });
-            CbRol.Location = new Point(12, 205);
+            CbRol.Location = new Point(12, 263);
             CbRol.Name = "CbRol";
             CbRol.Size = new Size(194, 23);
             CbRol.TabIndex = 23;
@@ -96,7 +93,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 187);
+            label4.Location = new Point(12, 245);
             label4.Name = "label4";
             label4.Size = new Size(27, 15);
             label4.TabIndex = 19;
@@ -105,7 +102,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 131);
+            label3.Location = new Point(12, 189);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 17;
@@ -113,7 +110,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(12, 149);
+            txtEmail.Location = new Point(12, 207);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(194, 23);
             txtEmail.TabIndex = 16;
@@ -121,7 +118,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 78);
+            label2.Location = new Point(12, 136);
             label2.Name = "label2";
             label2.Size = new Size(70, 15);
             label2.TabIndex = 15;
@@ -129,7 +126,7 @@
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(12, 96);
+            txtContraseña.Location = new Point(12, 154);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(194, 23);
             txtContraseña.TabIndex = 14;
@@ -143,69 +140,12 @@
             label1.TabIndex = 13;
             label1.Text = "Usuario:";
             // 
-            // txtUsuario
+            // txtNombre
             // 
-            txtUsuario.Location = new Point(12, 46);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(194, 23);
-            txtUsuario.TabIndex = 12;
-            // 
-            // groupBox2
-            // 
-            groupBox2.Anchor = AnchorStyles.None;
-            groupBox2.Controls.Add(Buscar_usuario);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(numericUpDown1);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(txtResult);
-            groupBox2.Location = new Point(636, 347);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(226, 144);
-            groupBox2.TabIndex = 25;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Comandos";
-            // 
-            // Buscar_usuario
-            // 
-            Buscar_usuario.Location = new Point(108, 43);
-            Buscar_usuario.Name = "Buscar_usuario";
-            Buscar_usuario.Size = new Size(95, 31);
-            Buscar_usuario.TabIndex = 30;
-            Buscar_usuario.Text = "Usuario";
-            Buscar_usuario.UseVisualStyleBackColor = true;
-            Buscar_usuario.Click += Buscar_usuario_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(17, 31);
-            label7.Name = "label7";
-            label7.Size = new Size(18, 15);
-            label7.TabIndex = 28;
-            label7.Text = "ID";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(17, 49);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(75, 23);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(17, 94);
-            label6.Name = "label6";
-            label6.Size = new Size(59, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Resultado";
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(17, 112);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(186, 23);
-            txtResult.TabIndex = 25;
+            txtNombre.Location = new Point(12, 46);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(194, 23);
+            txtNombre.TabIndex = 12;
             // 
             // Borrar
             // 
@@ -238,12 +178,39 @@
             dataGridView1.Size = new Size(636, 341);
             dataGridView1.TabIndex = 16;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.Location = new Point(499, 356);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 35);
+            button1.TabIndex = 27;
+            button1.Text = "Clientes";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 82);
+            label5.Name = "label5";
+            label5.Size = new Size(54, 15);
+            label5.TabIndex = 25;
+            label5.Text = "Apellido:";
+            // 
+            // txtApellido
+            // 
+            txtApellido.Location = new Point(12, 100);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(194, 23);
+            txtApellido.TabIndex = 24;
+            // 
             // Usuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
-            Controls.Add(groupBox2);
+            Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(Borrar);
             Controls.Add(Editar);
@@ -253,21 +220,12 @@
             Load += Usuarios_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private GroupBox groupBox1;
-        private GroupBox groupBox2;
-        private Button Buscar_usuario;
-        private Label label7;
-        private NumericUpDown numericUpDown1;
-        private Label label6;
-        private TextBox txtResult;
         private Button Guardar;
         private Label label4;
         private Label label3;
@@ -275,10 +233,13 @@
         private Label label2;
         private TextBox txtContraseña;
         private Label label1;
-        private TextBox txtUsuario;
+        private TextBox txtNombre;
         private Button Borrar;
         private Button Editar;
         private DataGridView dataGridView1;
         private ComboBox CbRol;
+        private Button button1;
+        private Label label5;
+        private TextBox txtApellido;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocios;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -20,7 +21,6 @@ namespace Presentacion
         public Categoria_Producto()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Categoria_Producto_Load(object sender, EventArgs e)
@@ -33,11 +33,6 @@ namespace Presentacion
             dataGridView1.DataSource = objeto.MostrarCategoria();
         }
 
-        private void Close_Windows(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
@@ -45,10 +40,25 @@ namespace Presentacion
             {
                 try
                 {
-                    categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarCategoria();
-                    limpiarForm();
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
+                            MessageBox.Show("se inserto correctamente");
+                            MostrarCategoria();
+                            limpiarForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El nombre es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -60,15 +70,30 @@ namespace Presentacion
             {
                 try
                 {
-                    categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarCategoria();
-                    limpiarForm();
-                    Editar_Cate = false;
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
+                            MessageBox.Show("se edito correctamente");
+                            MostrarCategoria();
+                            limpiarForm();
+                            Editar_Cate = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("El nombre es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
             }
         }
@@ -104,16 +129,29 @@ namespace Presentacion
                 MessageBox.Show("Seleccione una fila por favor");
         }
 
-        private void Buscar_Nombre_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = categoria.getNombre((int)numericUpDown1.Value);
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Medios_Pago pago = new Medios_Pago();
             pago.Show();
             this.Hide();
+        }
+
+        private bool Validar_campos_vacios()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtDesc.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool Validar_solo_letras()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z]*$"))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
