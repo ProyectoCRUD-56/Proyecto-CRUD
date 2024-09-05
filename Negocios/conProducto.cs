@@ -18,9 +18,9 @@ namespace Negocios
             DataTable tabla = new DataTable();
             List<string> combobox = new List<string>();
             tabla = Productos.Mostrar();
-
             return tabla;
         }
+      
         public void InsertarPRod(string nombre, string desc, string marca, string precio, string stock)
         {
             Productos.Insertar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock));

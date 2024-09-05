@@ -16,7 +16,6 @@ namespace Datos
         SqlDataReader buffer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
-        SqlDataAdapter adapter = new SqlDataAdapter();
 
         public DataTable Mostrar()
         {
@@ -59,6 +58,7 @@ namespace Datos
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }      
+
         
         public void Eliminar(int idpro)
         {
