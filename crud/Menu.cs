@@ -16,7 +16,13 @@ namespace Presentacion
         public Menu()
         {
             InitializeComponent();
+            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
+        private void Close_Windows(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
