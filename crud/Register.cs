@@ -33,7 +33,7 @@ namespace Presentacion
                 return;
             }
 
-            DBConsultasLR db = new DBConsultasLR();
+            UsuarioManager db = new UsuarioManager();
 
             // Verificar si el nombre de usuario ya existe
             string checkUserQuery = "SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
