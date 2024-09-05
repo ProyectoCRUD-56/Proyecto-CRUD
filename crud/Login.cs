@@ -32,7 +32,7 @@ namespace Presentacion
         new SqlParameter("@Contraseña", contraseña)
     };
 
-            DBConsultasLR db = new DBConsultasLR();
+            UsuarioManager db = new UsuarioManager();
             DataTable userTable = db.ExecuteQuery(query, parameters);
 
             if (userTable.Rows.Count > 0)
