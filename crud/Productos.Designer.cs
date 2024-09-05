@@ -32,7 +32,7 @@
             button2 = new Button();
             button3 = new Button();
             groupBox1 = new GroupBox();
-            comboBox1 = new ComboBox();
+            combo_categoria = new ComboBox();
             label8 = new Label();
             button1 = new Button();
             label5 = new Label();
@@ -45,17 +45,9 @@
             txtDesc = new TextBox();
             label1 = new Label();
             txtNombre = new TextBox();
-            groupBox2 = new GroupBox();
-            button5 = new Button();
-            label7 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            label6 = new Label();
-            txtResult = new TextBox();
             button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -95,7 +87,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(combo_categoria);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label5);
@@ -118,15 +110,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Producto";
             // 
-            // comboBox1
+            // combo_categoria
             // 
-
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 318);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(194, 23);
-            comboBox1.TabIndex = 24;
-            comboBox1.Text = "Seleccione una opcion:";
+            combo_categoria.FormattingEnabled = true;
+            combo_categoria.Location = new Point(12, 318);
+            combo_categoria.Name = "combo_categoria";
+            combo_categoria.Size = new Size(194, 23);
+            combo_categoria.TabIndex = 24;
+            combo_categoria.Text = "Seleccione una opcion:";
             // 
             // label8
             // 
@@ -141,77 +132,7 @@
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button1.Location = new Point(12, 458);
-            groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(button4);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(numericUpDown1);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(txtResult);
-            groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(3, 471);
-            groupBox2.Margin = new Padding(3, 4, 3, 4);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(259, 192);
-            groupBox2.TabIndex = 25;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Comandos";
-            // 
-            // button5
-            // 
-            button5.Location = new Point(123, 57);
-            button5.Margin = new Padding(3, 4, 3, 4);
-            button5.Name = "button5";
-            button5.Size = new Size(109, 41);
-            button5.TabIndex = 30;
-            button5.Text = "Nombre";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(123, 100);
-            button4.Margin = new Padding(3, 4, 3, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(109, 41);
-            button4.TabIndex = 29;
-            button4.Text = "Contar";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(19, 41);
-            label7.Name = "label7";
-            label7.Size = new Size(24, 20);
-            label7.TabIndex = 28;
-            label7.Text = "ID";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(19, 65);
-            numericUpDown1.Margin = new Padding(3, 4, 3, 4);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(86, 27);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(19, 125);
-            label6.Name = "label6";
-            label6.Size = new Size(75, 20);
-            label6.TabIndex = 26;
-            label6.Text = "Resultado";
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(19, 149);
-            txtResult.Margin = new Padding(3, 4, 3, 4);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(212, 27);
-            txtResult.TabIndex = 25;
+            
             // 
             // button1
             // 
@@ -307,63 +228,6 @@
             txtNombre.Size = new Size(221, 27);
             txtNombre.TabIndex = 12;
             // 
-            // groupBox2
-            // 
-            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(numericUpDown1);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(txtResult);
-            groupBox2.Location = new Point(636, 347);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(226, 144);
-            groupBox2.TabIndex = 25;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Comandos";
-            // 
-            // button5
-            // 
-            button5.Location = new Point(108, 43);
-            button5.Name = "button5";
-            button5.Size = new Size(95, 31);
-            button5.TabIndex = 30;
-            button5.Text = "Nombre";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(17, 31);
-            label7.Name = "label7";
-            label7.Size = new Size(18, 15);
-            label7.TabIndex = 28;
-            label7.Text = "ID";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(17, 49);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(75, 23);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(17, 94);
-            label6.Name = "label6";
-            label6.Size = new Size(59, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Resultado";
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(17, 112);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(186, 23);
-            txtResult.TabIndex = 25;
-            // 
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -380,7 +244,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
-            Controls.Add(groupBox2);
             Controls.Add(button6);
             Controls.Add(groupBox1);
             Controls.Add(button3);
@@ -393,9 +256,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -415,14 +275,8 @@
         private TextBox txtDesc;
         private Label label1;
         private TextBox txtNombre;
-        private GroupBox groupBox2;
-        private Button button5;
-        private Label label7;
-        private NumericUpDown numericUpDown1;
-        private Label label6;
-        private TextBox txtResult;
         private Button button6;
-        private ComboBox comboBox1;
+        private ComboBox combo_categoria;
         private Label label8;
     }
 }

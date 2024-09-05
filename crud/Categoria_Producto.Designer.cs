@@ -38,16 +38,8 @@
             Borrar = new Button();
             Editar = new Button();
             dataGridView1 = new DataGridView();
-            groupBox2 = new GroupBox();
-            Buscar_Nombre = new Button();
-            label7 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            label6 = new Label();
-            txtResult = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // button6
@@ -150,69 +142,11 @@
             dataGridView1.Size = new Size(636, 341);
             dataGridView1.TabIndex = 21;
             // 
-            // groupBox2
-            // 
-            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            groupBox2.Controls.Add(Buscar_Nombre);
-            groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(numericUpDown1);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(txtResult);
-            groupBox2.Location = new Point(636, 350);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(226, 144);
-            groupBox2.TabIndex = 26;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Comandos";
-            // 
-            // Buscar_Nombre
-            // 
-            Buscar_Nombre.Location = new Point(108, 43);
-            Buscar_Nombre.Name = "Buscar_Nombre";
-            Buscar_Nombre.Size = new Size(95, 31);
-            Buscar_Nombre.TabIndex = 30;
-            Buscar_Nombre.Text = "Nombre";
-            Buscar_Nombre.UseVisualStyleBackColor = true;
-            Buscar_Nombre.Click += Buscar_Nombre_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(17, 31);
-            label7.Name = "label7";
-            label7.Size = new Size(18, 15);
-            label7.TabIndex = 28;
-            label7.Text = "ID";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(17, 49);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(75, 23);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(17, 94);
-            label6.Name = "label6";
-            label6.Size = new Size(59, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Resultado";
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(17, 112);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(186, 23);
-            txtResult.TabIndex = 25;
-            // 
             // Categoria_Producto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
-            Controls.Add(groupBox2);
             Controls.Add(dataGridView1);
             Controls.Add(button6);
             Controls.Add(groupBox1);
@@ -224,9 +158,6 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -242,11 +173,5 @@
         private Button Borrar;
         private Button Editar;
         private DataGridView dataGridView1;
-        private GroupBox groupBox2;
-        private Button Buscar_Nombre;
-        private Label label7;
-        private NumericUpDown numericUpDown1;
-        private Label label6;
-        private TextBox txtResult;
     }
 }

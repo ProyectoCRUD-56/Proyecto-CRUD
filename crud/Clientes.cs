@@ -19,6 +19,7 @@ namespace Presentacion
         private conCliente cliente = new conCliente();
         private string idCliente = null;
         private bool Editar = false;
+        private string sexo = null;
         public Clientes()
         {
             InitializeComponent();
@@ -59,7 +60,15 @@ namespace Presentacion
                         {
                             if (Validar_solo_numero())
                             {
-                                cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text);
+                                if (comboBox1.Text == "Masculino")
+                                {
+                                    sexo = "M";
+                                }
+                                else if (comboBox1.Text == "Femenino")
+                                {
+                                    sexo = "F";
+                                }
+                                cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo);
                                 MessageBox.Show("se inserto correctamente");
                                 MostrarClientes();
                                 limpiarForm();
@@ -91,11 +100,42 @@ namespace Presentacion
             {
                 try
                 {
-                    cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, idCliente);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarClientes();
-                    limpiarForm();
-                    Editar = false;
+                    if (Validar_campos_vacios())
+                    {
+                        if (Validar_solo_letras())
+                        {
+                            if (Validar_solo_numero())
+                            {
+                                if (comboBox1.Text == "Masculino")
+                                {
+                                    sexo = "M";
+                                }
+                                else if (comboBox1.Text == "Femenino")
+                                {
+                                    sexo = "F";
+                                }
+                                cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);
+                                MessageBox.Show("se edito correctamente");
+                                MostrarClientes();
+                                limpiarForm();
+                                Editar = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cedula o Telefono incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(" Nombre o Apellido incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -111,10 +151,18 @@ namespace Presentacion
                 Editar = true;
                 txtNombre.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
                 txtApellido.Text = dataGridView1.CurrentRow.Cells["Apellido"].Value.ToString();
+                txtCedula.Text = dataGridView1.CurrentRow.Cells["N_Identificacion"].Value.ToString();
                 txtDireccion.Text = dataGridView1.CurrentRow.Cells["Direccion"].Value.ToString();
                 txtTelefono.Text = dataGridView1.CurrentRow.Cells["Telefono"].Value.ToString();
                 txtCorreo.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
                 idCliente = dataGridView1.CurrentRow.Cells["Id_cliente"].Value.ToString();
+                if (dataGridView1.CurrentRow.Cells["Sexo"].Value.ToString() == "M")
+                {
+                    comboBox1.Text = "Masculino";
+                } else if (dataGridView1.CurrentRow.Cells["Sexo"].Value.ToString() == "F")
+                {
+                    comboBox1.Text = "Femenino";
+                }
             }
             else
                 MessageBox.Show("seleccione una fila por favor");
@@ -171,6 +219,5 @@ namespace Presentacion
             }
             return false;
         }
-
     }
 }

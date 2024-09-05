@@ -13,7 +13,6 @@ namespace crud
         public frmMain()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,6 +25,7 @@ namespace crud
             conProducto objeto = new conProducto();
             dataGridView1.DataSource = objeto.MostrarProd();
         }
+        
 
         private void Guardar_Click(object sender, EventArgs e)
         {
@@ -34,10 +34,26 @@ namespace crud
             {
                 try
                 {
-                    Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarProductos();
-                    limpiarForm();
+                    if (Validar_campos_vacios())
+                    {
+
+                        if (Validar_solo_numero())
+                        {
+
+                            Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text);
+                            MessageBox.Show("se inserto correctamente");
+                            MostrarProductos();
+                            limpiarForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El Precio o Stock son incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -49,17 +65,36 @@ namespace crud
             {
                 try
                 {
-                    Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarProductos();
-                    limpiarForm();
-                    Editar = false;
+                    if (Validar_campos_vacios())
+                    {
+
+                        if (Validar_solo_numero())
+                        {
+
+                            Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto);
+                            MessageBox.Show("se edito correctamente");
+                            MostrarProductos();
+                            limpiarForm();
+                            Editar = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("El Precio o Stock son incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
             }
+           
+            
         }
 
         private void limpiarForm()
@@ -100,26 +135,32 @@ namespace crud
                 MessageBox.Show("seleccione una fila por favor");
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = Producto.getNombre((int)numericUpDown1.Value);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = Convert.ToString(Producto.Contar());
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Categoria_Producto categoria = new Categoria_Producto();
             categoria.Show();
             this.Hide();
         }
-
-        private void Close_Windows(object sender, FormClosedEventArgs e)
+        private bool Validar_solo_numero()
         {
-            Application.Exit();
+            if ((System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, @"^\d*$") && (Convert.ToInt32(txtPrecio.Text) > 0 && Convert.ToInt32(txtPrecio.Text) < 100000000)) &&
+                (System.Text.RegularExpressions.Regex.IsMatch(txtStock.Text, @"^\d*$") && (Convert.ToInt32(txtStock.Text) > 0 && Convert.ToInt32(txtStock.Text) < 5000)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool Validar_campos_vacios()
+        {
+            if (string.IsNullOrEmpty(txtDesc.Text) || string.IsNullOrEmpty(txtMarca.Text)
+                || string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtPrecio.Text)
+                || string.IsNullOrEmpty(txtStock.Text))
+                //|| combo_categoria.SelectedIndex == -1)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
