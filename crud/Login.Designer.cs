@@ -86,11 +86,13 @@
             // txtContraseña
             // 
             txtContraseña.Location = new Point(298, 244);
+            txtContraseña.MaxLength = 20;
             txtContraseña.Name = "txtContraseña";
+            txtContraseña.PasswordChar = '*';
             txtContraseña.Size = new Size(199, 23);
             txtContraseña.TabIndex = 5;
             // 
-            // Crud
+            // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -101,7 +103,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Crud";
+            Name = "Login";
             Text = "Inicio de Sesion";
             ResumeLayout(false);
             PerformLayout();
