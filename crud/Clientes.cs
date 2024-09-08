@@ -55,7 +55,7 @@ namespace Presentacion
             {
                 try
                 {
-                    if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") && validacion.Validar_solo_letras($"{txtNombre.Text}, {txtApellido.Text}","Nombre, Apellido") && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula, Telefono") && validarSexo(comboBox1.Text))
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") && validarSexo(comboBox1.Text))
                     {
                         cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo);
                         MessageBox.Show("se inserto correctamente");
@@ -73,7 +73,7 @@ namespace Presentacion
             {
                 try
                 {
-                    if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") || comboBox1.SelectedIndex == -1 && Validar_solo_letras()&& validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula, Telefono") && validarSexo(comboBox1.Text))
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") || comboBox1.SelectedIndex == -1 && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")&& validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono") && validarSexo(comboBox1.Text))
                     {
                         cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);
                         MessageBox.Show("se edito correctamente");

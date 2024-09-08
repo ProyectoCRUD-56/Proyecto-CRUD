@@ -33,8 +33,14 @@ namespace Negocios
 
             return true;
         }
+        /// <summary>
+        /// Verifica que en los campos dados solo haya valores numéricos
+        /// </summary>
+        /// <param name="campos">un string que contiene los valores de todos los campos a validar separados por comas (sintaxis $"{variable},{variable}"</param>
+        /// <returns>falso cuando hay campos que contienen caracteres no numéricos, verdadero en caso contrario</returns>
         public bool Validar_solo_numero(string campos, string nombresCamposNumericos)
         {
+            campos = campos.Replace(" ","");
             camposArray = campos.Split(',');
             nombresArray = nombresCamposNumericos.Split(',');
             mensaje=string.Empty;
@@ -55,6 +61,11 @@ namespace Negocios
             }
             return true;
         }
+        /// <summary>
+        /// Verifica que en los campos dados solo haya caracteres de lenguaje
+        /// </summary>
+        /// <param name="campos">un string que contiene los valores de todos los campos a validar separados por comas (sintaxis $"{variable},{variable}"</param>
+        /// <returns>falso cuando hay campos que contienen caracteres distintos a caracteres de lenguaje, verdadero en caso contrario</returns>
         public bool Validar_solo_letras(string campos, string nombresCampos)
         {
             camposArray = campos.Split(',');
@@ -62,7 +73,7 @@ namespace Negocios
             mensaje = string.Empty;
             foreach (var campo in camposArray)
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(campo, @"^[a-zA-Z]*$"))
+                if (!System.Text.RegularExpressions.Regex.IsMatch(campo, @"^[a-zA-Z ]*$"))
                 {
                     if (nombresArray.Length > 1)
                     {
