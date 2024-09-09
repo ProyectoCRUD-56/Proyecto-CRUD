@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,6 +42,7 @@ namespace Negocios
         public bool Validar_solo_numero(string campos, string nombresCamposNumericos)
         {
             campos = campos.Replace(" ","");
+            nombresCamposNumericos = nombresCamposNumericos.Replace(" ", "");
             camposArray = campos.Split(',');
             nombresArray = nombresCamposNumericos.Split(',');
             mensaje=string.Empty;
@@ -88,7 +90,14 @@ namespace Negocios
                 }
             }
             return true;
-
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool Validar_solo_letras_()
+        {
+            return true;
         }
     }
 }
