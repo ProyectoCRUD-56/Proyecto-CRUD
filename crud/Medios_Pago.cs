@@ -16,11 +16,11 @@ namespace Presentacion
         private conMedio_Pago medioPago = new conMedio_Pago();
         private string idMedio_pago = null;
         private bool Editar_Medio = false;
+        Validaciones valid = new Validaciones();
         public Medios_Pago()
         {
             InitializeComponent();
         }
-
         private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
@@ -28,23 +28,13 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}")
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}","Metodo,Detalles"))
                     {
-                        if (Validar_solo_letras())
-                        {
-                            medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
-                            MessageBox.Show("se inserto correctamente");
-                            MostrarMediosPago();
-                            limpiarForm();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El Metodo es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
+                        MessageBox.Show("Se insertó correctamente");
+                        MostrarMediosPago();
+                        limpiarForm();
                     }
                 }
                 catch (Exception ex)
@@ -57,24 +47,14 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}")
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}","Metodo,Detalles,Medio de Pago"))
                     {
-                        if (Validar_solo_letras())
-                        {
-                            medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
-                            MessageBox.Show("se edito correctamente");
-                            MostrarMediosPago();
-                            limpiarForm();
-                            Editar_Medio = false;
-                        }
-                        else
-                        {
-                            MessageBox.Show("El Metodo es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarMediosPago();
+                        limpiarForm();
+                        Editar_Medio = false;
                     }
                 }
                 catch (Exception ex)
@@ -83,7 +63,6 @@ namespace Presentacion
                 }
             }
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -96,7 +75,6 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
         private void Borrar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -109,47 +87,25 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
         private void Medios_Pago_Load(object sender, EventArgs e)
         {
             MostrarMediosPago();
         }
-
         private void MostrarMediosPago()
         {
             conMedio_Pago medio_Pago = new conMedio_Pago();
             dataGridView1.DataSource = medio_Pago.MostrarMediosPago();
         }
-
         private void limpiarForm()
         {
             txtDetalles.Clear();
             txtMetodo.Clear();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Usuarios usuario = new Usuarios();
             usuario.Show();
             this.Hide();
-        }
-
-        private bool Validar_campos_vacios()
-        {
-            if (string.IsNullOrEmpty(txtDetalles.Text) || string.IsNullOrEmpty(txtMetodo.Text))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private bool Validar_solo_letras()
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtMetodo.Text, @"^[a-zA-Z\s]*$"))
-            {
-                return false;
-            }
-            return true;
         }
     }
 }
