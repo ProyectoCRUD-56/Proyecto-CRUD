@@ -1,5 +1,7 @@
 using Negocios;
 using Presentacion;
+using System.Data;
+using System.Reflection.Metadata.Ecma335;
 
 namespace crud
 {
@@ -8,17 +10,18 @@ namespace crud
         private conProducto Producto = new conProducto();
         private string idProducto = null;
         private bool Editar = false;
-        
+        Validaciones valid = new Validaciones();
+        private int valorId;
 
         public frmMain()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             MostrarProductos();
+            ListarCategorias();
         }
 
         private void MostrarProductos()
@@ -27,21 +30,43 @@ namespace crud
             dataGridView1.DataSource = objeto.MostrarProd();
         }
 
+        private void ListarCategorias()
+        {
+            conProducto objeto = new conProducto();
+            
+            combo_categoria.DataSource = objeto.Mostrar_Categoria();
+            combo_categoria.DisplayMember = "Nombre";
+            combo_categoria.ValueMember = "Id_categoria";
+            combo_categoria.Text= "Selecciones una categoria:";
+        }
+
         private void Guardar_Click(object sender, EventArgs e)
         {
+            
             //INSERTAR
             if (Editar == false)
             {
                 try
                 {
-                    Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarProductos();
-                    limpiarForm();
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}","Precio,Stock"))
+                    {
+                        if ((combo_categoria.SelectedValue != null))
+                        {
+                            Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, (int)combo_categoria.SelectedValue);
+                            MessageBox.Show("Se inserto correctamente");
+                            MostrarProductos();
+                            limpiarForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Seleccione una categoria", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
+                    MessageBox.Show("No se pudo insertar los datos por: " + ex);
                 }
             }
             //EDITAR
@@ -49,19 +74,29 @@ namespace crud
             {
                 try
                 {
-                    Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarProductos();
-                    limpiarForm();
-                    Editar = false;
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}", "Precio,Stock"))
+                    {
+                        if ((combo_categoria.SelectedValue != null))
+                        {
+                            Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto, (int)combo_categoria.SelectedValue);
+                            MessageBox.Show("Se edito correctamente");
+                            MostrarProductos();
+                            limpiarForm();
+                            Editar = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Seleccione una categoria", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
-            }
+            } 
         }
-
         private void limpiarForm()
         {
             txtDesc.Clear();
@@ -69,10 +104,12 @@ namespace crud
             txtPrecio.Clear();
             txtStock.Clear();
             txtNombre.Clear();
+            combo_categoria.Text = "Selecciones una categoria:";
         }
 
         private void Editar_Click(object sender, EventArgs e)
         {
+            conProducto objeto = new conProducto();
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Editar = true;
@@ -82,6 +119,23 @@ namespace crud
                 txtPrecio.Text = dataGridView1.CurrentRow.Cells["Precio"].Value.ToString();
                 txtStock.Text = dataGridView1.CurrentRow.Cells["Stock"].Value.ToString();
                 idProducto = dataGridView1.CurrentRow.Cells["Id_producto"].Value.ToString();
+                valorId = (int)dataGridView1.CurrentRow.Cells["IdCategoria"].Value;
+                //if()
+                foreach (DataRowView valor in combo_categoria.Items)
+                {
+                    int valorIdcombo = (int)valor[combo_categoria.ValueMember];
+
+                    if (valorIdcombo == valorId)
+                    {
+                        combo_categoria.SelectedValue = valorId;
+                        break;
+                    }
+                    else
+                    {
+                        combo_categoria.Text = "Categoria Inactiva";
+
+                    }
+                }
             }
             else
                 MessageBox.Show("seleccione una fila por favor");
@@ -100,26 +154,11 @@ namespace crud
                 MessageBox.Show("seleccione una fila por favor");
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = Producto.getNombre((int)numericUpDown1.Value);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = Convert.ToString(Producto.Contar());
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Categoria_Producto categoria = new Categoria_Producto();
             categoria.Show();
             this.Hide();
-        }
-
-        private void Close_Windows(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

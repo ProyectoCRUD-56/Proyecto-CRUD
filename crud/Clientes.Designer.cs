@@ -47,17 +47,9 @@
             BorrarBtn = new Button();
             EditarBtn = new Button();
             dataGridView1 = new DataGridView();
-            groupBox3 = new GroupBox();
-            button6 = new Button();
-            label9 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            label10 = new Label();
-            textBox2 = new TextBox();
             button1 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -93,7 +85,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(193, 23);
             comboBox1.TabIndex = 26;
-            comboBox1.Text = "Seleccione una opcion";
+            comboBox1.Text = "Seleccione una opción";
             // 
             // label7
             // 
@@ -242,62 +234,6 @@
             dataGridView1.Size = new Size(636, 341);
             dataGridView1.TabIndex = 15;
             // 
-            // groupBox3
-            // 
-            groupBox3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            groupBox3.Controls.Add(button6);
-            groupBox3.Controls.Add(label9);
-            groupBox3.Controls.Add(numericUpDown2);
-            groupBox3.Controls.Add(label10);
-            groupBox3.Controls.Add(textBox2);
-            groupBox3.Location = new Point(636, 347);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(226, 144);
-            groupBox3.TabIndex = 26;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Estado del Cliente";
-            // 
-            // button6
-            // 
-            button6.Location = new Point(108, 43);
-            button6.Name = "button6";
-            button6.Size = new Size(95, 31);
-            button6.TabIndex = 30;
-            button6.Text = "Estado";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(17, 31);
-            label9.Name = "label9";
-            label9.Size = new Size(18, 15);
-            label9.TabIndex = 28;
-            label9.Text = "ID";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(17, 49);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(75, 23);
-            numericUpDown2.TabIndex = 27;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(17, 94);
-            label10.Name = "label10";
-            label10.Size = new Size(59, 15);
-            label10.TabIndex = 26;
-            label10.Text = "Resultado";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(17, 112);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(186, 23);
-            textBox2.TabIndex = 25;
-            // 
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -315,7 +251,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 500);
             Controls.Add(button1);
-            Controls.Add(groupBox3);
             Controls.Add(groupBox1);
             Controls.Add(BorrarBtn);
             Controls.Add(EditarBtn);
@@ -326,9 +261,6 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
         }
 
@@ -349,12 +281,6 @@
         private Button BorrarBtn;
         private Button EditarBtn;
         private DataGridView dataGridView1;
-        private GroupBox groupBox3;
-        private Button button6;
-        private Label label9;
-        private NumericUpDown numericUpDown2;
-        private Label label10;
-        private TextBox textBox2;
         private Label label6;
         private TextBox txtCedula;
         private ComboBox comboBox1;

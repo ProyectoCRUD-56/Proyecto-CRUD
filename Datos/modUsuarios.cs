@@ -27,22 +27,6 @@ namespace Datos
 
         }
 
-        public string getNombre(int id)
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "select NombreUsuario from Usuarios where Id_usuario = @id";
-            comando.Parameters.AddWithValue("@id", id);
-            SqlDataReader data = comando.ExecuteReader();
-            string nombre;
-            if (data.Read())
-                nombre = data["NombreUsuario"].ToString();
-            else
-                nombre = "No encontrado";
-            comando.Parameters.Clear();
-            conexion.CerrarConexion();
-            return (nombre);
-        }
-
         public void Insertar_Usuarios(string nombre, string contraseña, string email, string rol)
         {
             comando.Connection = conexion.AbrirConexion();

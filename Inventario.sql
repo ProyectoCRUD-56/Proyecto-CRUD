@@ -1,147 +1,121 @@
--- Crear la base de datos y usarla
-CREATE DATABASE inventario;
-GO
+--CREATE DATABASE inventario;-- Crea la base de datos Inventario
 
 USE inventario;
-GO
-
--- Crear tabla Productos
-CREATE TABLE Productos 
-(
-    Id_producto INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre NVARCHAR(20),
-    Descripcion NVARCHAR(35),
-    Marca NVARCHAR(25),
-    Precio FLOAT,
-    Stock INT,
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
-);
-GO
-
--- Crear procedimientos almacenados
---------------------------MOSTRAR 
-CREATE PROC MostrarProductos
-AS
-    SELECT * FROM Productos WHERE Activo = 1;
-GO
-
---------------------------INSERTAR 
-CREATE PROC InsertarProductos
-    @nombre NVARCHAR(20),
-    @descrip NVARCHAR(35),
-    @marca NVARCHAR(25),
-    @precio FLOAT,
-    @stock INT
-AS
-BEGIN
-    INSERT INTO Productos (Nombre, Descripcion, Marca, Precio, Stock, Activo) 
-    VALUES (@nombre, @descrip, @marca, @precio, @stock, 1); -- 1 indica que el registro está activo
-END;
-GO
-
-------------------------ELIMINAR
-CREATE PROC EliminarProducto
-    @idpro INT
-AS
-BEGIN
-    UPDATE Productos
-    SET Activo = 0
-    WHERE Id_producto = @idpro;
-END;
-GO
-
-------------------EDITAR
-CREATE PROC EditarProductos
-    @nombre NVARCHAR(20),
-    @descrip NVARCHAR(35),
-    @marca NVARCHAR(25),
-    @precio FLOAT,
-    @stock INT,
-    @id INT
-AS
-BEGIN
-    UPDATE Productos 
-    SET Nombre = @nombre, 
-        Descripcion = @descrip, 
-        Marca = @marca, 
-        Precio = @precio, 
-        Stock = @stock 
-    WHERE Id_producto = @id AND Activo = 1; -- Solo edita si el producto está activo
-END;
-GO
-
--- Crear otras tablas
-CREATE TABLE Categoria_Producto
+                      --/-----------Creacion de las tablas -----------/
+CREATE TABLE Categoria_Producto  --TABLA DE CATEGORIAS
 (
     Id_categoria INT IDENTITY(1,1) PRIMARY KEY,
-	Idproducto INT FOREIGN KEY REFERENCES Productos(Id_producto),
     Nombre NVARCHAR(15) NOT NULL,
     Descripcion NVARCHAR(25),
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Activo BIT DEFAULT 1 
 );
-GO
+CREATE TABLE Producto --TABLA PRODUCTOS
+(
+    Id_producto INT IDENTITY(1,1) PRIMARY KEY,
+	IdCategoria INT FOREIGN KEY REFERENCES Categoria_Producto(Id_categoria),
+    Nombre NVARCHAR(20) NOT NULL,
+    Descripcion NVARCHAR(35) NOT NULL,
+    Marca NVARCHAR(25) NOT NULL,
+    Precio FLOAT NOT NULL,
+    Stock INT NOT NULL,
+    Activo BIT DEFAULT 1 
+);
 
-CREATE TABLE MediosPago
+CREATE TABLE MediosPago -- CREACION DE LA TABLA PARA DETERMINAR EL MEDIO DE PAGO
 (
     Id_mediospago INT IDENTITY(1,1) PRIMARY KEY,
     Metodo NVARCHAR(15) NOT NULL,
     Detalles NVARCHAR(25),
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Activo BIT DEFAULT 1 
 );
-GO
 
-CREATE TABLE Clientes
+CREATE TABLE Clientes --CREACION DE LA TABLA CLIENTES 
 (
     Id_cliente INT IDENTITY(1,1) PRIMARY KEY,
     Nombre NVARCHAR(15) NOT NULL,
-    Apellido NVARCHAR(25) NOT NULL,
-    Direccion NVARCHAR(35) DEFAULT 'No tiene',
+    Apellido NVARCHAR(25) NOT NULL, 
+	N_Identificacion NVARCHAR (12) NOT NULL,
+	Sexo CHAR(1) NOT NULL,                      --TABLA DIRECTAMENTE RELACIONADA CON LA TABLA DE FACTURAS
+    Direccion NVARCHAR(35) DEFAULT 'No tiene',         --
     Telefono NVARCHAR(12) DEFAULT 'No tiene',
     Email NVARCHAR(60) DEFAULT 'No tiene',
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Activo BIT DEFAULT 1 
 );
-GO
+CREATE TABLE Roles(
+Id_Rol INT IDENTITY(1,1) PRIMARY KEY,
+Tipo_Rol VARCHAR(20));
+insert into Roles values('admin')
+insert into Usuarios values (1,'Jose Luis','Alvarez','123','josel.alvarez2006@gmail.com','admin',1)
+CREATE TABLE Usuarios
+(
+    Id_usuario INT IDENTITY(1,1) PRIMARY KEY,
+	Id_Rol INT FOREIGN KEY REFERENCES Roles(Id_Rol),
+    Nombre_Usuario NVARCHAR(15) NOT NULL,
+	Apellido_usuario NVARCHAR(20) NOT NULL,
+    Contraseña NVARCHAR(20) NOT NULL,
+    Email NVARCHAR(35),
+    Rol NVARCHAR(15),
+    Activo BIT DEFAULT 1 
+);
+
 
 CREATE TABLE Factura
 (
     Id_factura INT IDENTITY(1,1) PRIMARY KEY,
     IdCliente INT FOREIGN KEY REFERENCES Clientes(Id_cliente),
+	Id_Usuarios INT FOREIGN KEY REFERENCES Usuarios(Id_usuario),
     Fecha DATE NOT NULL,
+	Hora TIME NOT NULL,
     IdMedioPago INT FOREIGN KEY REFERENCES MediosPago(Id_mediospago),
     Total FLOAT NOT NULL,
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Activo BIT DEFAULT 1 
 );
-GO
-
-CREATE TABLE Usuarios
+CREATE TABLE Historial_Precios
 (
-    Id_usuario INT IDENTITY(1,1) PRIMARY KEY,
-    NombreUsuario NVARCHAR(15) NOT NULL,
-    Contraseña NVARCHAR(25) NOT NULL,
-    Email NVARCHAR(35),
-    Rol NVARCHAR(20),
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Id_historial INT IDENTITY(1,1) PRIMARY KEY,
+    Id_producto INT FOREIGN KEY REFERENCES Producto(Id_producto), -- Relación con Producto
+    Precio FLOAT NOT NULL, -- Precio vigente
+    Fecha_inicio DATE NOT NULL, -- Fecha en que comienza a regir este precio
+    Fecha_fin DATE NULL, -- Fecha en que deja de ser vigente este precio (NULL si aún está vigente)
+    Activo BIT DEFAULT 1
 );
-GO
-
 CREATE TABLE Transaccion 
 (
     Id_transaccion INT IDENTITY(1,1) PRIMARY KEY,
     Id_factura INT FOREIGN KEY REFERENCES Factura(Id_factura),
-    Id_producto INT FOREIGN KEY REFERENCES Productos(Id_producto),
-
+    Id_producto INT FOREIGN KEY REFERENCES Producto(Id_producto),
+	Id_historia INT FOREIGN KEY REFERENCES Historial_Precios(Id_historial),
     Cantidad INT NOT NULL,
-    PrecioUnitario FLOAT NOT NULL,
+    PrecioUnitario FLOAT NOT NULL, -- Precio al momento de la transacciòn
     SubTotal AS (Cantidad * PrecioUnitario),
-    Activo BIT DEFAULT 1 -- Añadido el campo Activo
+    Activo BIT DEFAULT 1 
 );
-GO
 
--- Ejemplo de llamada a procedimientos
--- Insertar un producto
---EXEC InsertarProductos @nombre = 'Gaseosa', @descrip = '3 litros', @marca = 'marcacola', @precio = 7000, @stock = 24;
 
--- Eliminar un producto (marcarlo como inactivo)
---EXEC EliminarProducto @idpro = 2;
 
-insert into Clientes values ('Juan','Mona','cr 45 56 67','3106824071','juanpablo@gmail.com',1)
+
+
+go
+CREATE TRIGGER trg_AfterUpdate_Precio
+ON Producto
+AFTER UPDATE
+AS
+BEGIN
+    DECLARE @Id_producto INT;
+    DECLARE @Nuevo_Precio FLOAT;
+    DECLARE @FechaInicio DATE = GETDATE();
+
+    -- Obtener el Id_producto y el nuevo precio de la actualización
+    SELECT @Id_producto = INSERTED.Id_producto, @Nuevo_Precio = INSERTED.Precio
+    FROM INSERTED;
+
+    -- Actualizar el precio anterior en Historial_Precios cerrando su periodo de vigencia
+    UPDATE Historial_Precios
+    SET Fecha_fin = @FechaInicio
+    WHERE Id_producto = @Id_producto 
+    AND Fecha_fin IS NULL;
+
+    -- Insertar el nuevo precio en Historial_Precios con la nueva vigencia
+    INSERT INTO Historial_Precios (Id_producto, Precio, Fecha_inicio)
+    VALUES (@Id_producto, @Nuevo_Precio, @FechaInicio);
+END;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocios;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -16,11 +17,11 @@ namespace Presentacion
         private conCategoria_Prod categoria = new conCategoria_Prod();
         private string idCategoria = null;
         private bool Editar_Cate = false;
+        Validaciones validacion = new();
 
         public Categoria_Producto()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
 
         private void Categoria_Producto_Load(object sender, EventArgs e)
@@ -33,11 +34,6 @@ namespace Presentacion
             dataGridView1.DataSource = objeto.MostrarCategoria();
         }
 
-        private void Close_Windows(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
@@ -45,10 +41,14 @@ namespace Presentacion
             {
                 try
                 {
-                    categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarCategoria();
-                    limpiarForm();
+
+                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}","Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
+                    {
+                        categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
+                        MessageBox.Show("se inserto correctamente");
+                        MostrarCategoria();
+                        limpiarForm();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -60,15 +60,23 @@ namespace Presentacion
             {
                 try
                 {
-                    categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarCategoria();
-                    limpiarForm();
-                    Editar_Cate = false;
+                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
+                    {
+                        categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarCategoria();
+                        limpiarForm();
+                        Editar_Cate = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
             }
         }
@@ -104,16 +112,11 @@ namespace Presentacion
                 MessageBox.Show("Seleccione una fila por favor");
         }
 
-        private void Buscar_Nombre_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = categoria.getNombre((int)numericUpDown1.Value);
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Medios_Pago pago = new Medios_Pago();
             pago.Show();
             this.Hide();
         }
-    }
+        }
 }

@@ -29,10 +29,5 @@ namespace Negocios
         {
             usuario.Eliminar_Usuario(Convert.ToInt32(id));
         }
-
-        public string getNombre(int id)
-        {
-            return usuario.getNombre(id);
-        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using crud;
+using crud;
 using Datos;
 using Negocios;
 using System;
@@ -19,6 +19,8 @@ namespace Presentacion
         private conCliente cliente = new conCliente();
         private string idCliente = null;
         private bool Editar = false;
+        private string sexo = null;
+        private Validaciones validacion = new Negocios.Validaciones();
         public Clientes()
         {
             InitializeComponent();
@@ -53,33 +55,19 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
-                    {
-                        if (Validar_solo_letras())
-                        {
-                            if (Validar_solo_numero())
-                            {
-                                cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text);
-                                MessageBox.Show("se inserto correctamente");
-                                MostrarClientes();
-                                limpiarForm();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cedula o Telefono incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show(" Nombre o Apellido incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
 
-                    }
-                    else
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}")
+                        && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") 
+                        && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") 
+                        && validarSexo(comboBox1.Text)
+                        )
                     {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                        cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo);
+                        MessageBox.Show("Se insertó correctamente");
 
+                        MostrarClientes();
+                        limpiarForm();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -91,11 +79,21 @@ namespace Presentacion
             {
                 try
                 {
-                    cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, idCliente);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarClientes();
-                    limpiarForm();
-                    Editar = false;
+
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") 
+                        || comboBox1.SelectedIndex == -1 
+                        && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
+                        && validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono") 
+                        && validarSexo(comboBox1.Text))
+                    {
+                        cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);
+                        MessageBox.Show("Se editó correctamente");
+
+                        MostrarClientes();
+                        limpiarForm();
+                        Editar = false;
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -111,13 +109,21 @@ namespace Presentacion
                 Editar = true;
                 txtNombre.Text = dataGridView1.CurrentRow.Cells["Nombre"].Value.ToString();
                 txtApellido.Text = dataGridView1.CurrentRow.Cells["Apellido"].Value.ToString();
+                txtCedula.Text = dataGridView1.CurrentRow.Cells["N_Identificacion"].Value.ToString();
                 txtDireccion.Text = dataGridView1.CurrentRow.Cells["Direccion"].Value.ToString();
                 txtTelefono.Text = dataGridView1.CurrentRow.Cells["Telefono"].Value.ToString();
                 txtCorreo.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
                 idCliente = dataGridView1.CurrentRow.Cells["Id_cliente"].Value.ToString();
+                if (dataGridView1.CurrentRow.Cells["Sexo"].Value.ToString() == "M")
+                {
+                    comboBox1.Text = "Masculino";
+                } else if (dataGridView1.CurrentRow.Cells["Sexo"].Value.ToString() == "F")
+                {
+                    comboBox1.Text = "Femenino";
+                }
             }
             else
-                MessageBox.Show("seleccione una fila por favor");
+                MessageBox.Show("Seleccione una fila por favor");
         }
 
         private void BorrarBtn_Click(object sender, EventArgs e)
@@ -138,39 +144,25 @@ namespace Presentacion
             frmMain Productos = new frmMain();
             Productos.Show();
             this.Hide();
-        }
+        }     
 
-        private bool Validar_campos_vacios()
+        bool validarSexo(string comboBoxText)
         {
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text)
-                || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtCorreo.Text)
-                || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtTelefono.Text)
-                || comboBox1.SelectedIndex == -1)
+            switch (comboBoxText)
             {
-                return false;
+                case "Masculino":
+                    sexo = "M";
+                    return true;
+                    break;
+                case "Femenino":
+                    sexo = "F";
+                    return true;
+                    break;
+                default:
+                    MessageBox.Show("Valor de sexo ingresado está fuera de los parámetros", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                    break;
             }
-            return true;
         }
-
-        private bool Validar_solo_letras()
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z]*$") ||
-                !System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z]*$"))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private bool Validar_solo_numero()
-        {
-            if ((System.Text.RegularExpressions.Regex.IsMatch(txtCedula.Text, @"^\d*$") && (txtCedula.Text.Length > 6 && txtCedula.Text.Length <= 11)) &&
-                (System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d*$") && (txtTelefono.Text.Length == 10)))
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }

@@ -27,22 +27,6 @@ namespace Datos
             return tabla;
         }
 
-        public string getNombre(int id)
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "select Nombre from Categoria_Producto where Id_categoria = @id";
-            comando.Parameters.AddWithValue("@id", id);
-            SqlDataReader data = comando.ExecuteReader();
-            string nombre;
-            if (data.Read())
-                nombre = data["Nombre"].ToString();
-            else
-                nombre = "No encontrado";
-            comando.Parameters.Clear();
-            conexion.CerrarConexion();
-            return (nombre);
-        }
-
         public void Insertar(string nombre, string desc)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -57,7 +41,7 @@ namespace Datos
         public void Editar(string nombre, string desc, int id)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "update Categoria_Producto set Nombre=@nombre, Descripcion=@descrip where Id=@id";
+            comando.CommandText = "update Categoria_Producto set Nombre=@nombre, Descripcion=@descrip where Id_categoria=@id";
             comando.CommandType = CommandType.Text;
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@descrip", desc);

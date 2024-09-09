@@ -16,12 +16,11 @@ namespace Presentacion
         private conMedio_Pago medioPago = new conMedio_Pago();
         private string idMedio_pago = null;
         private bool Editar_Medio = false;
+        Validaciones valid = new Validaciones();
         public Medios_Pago()
         {
             InitializeComponent();
-            this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
-
         private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
@@ -29,10 +28,14 @@ namespace Presentacion
             {
                 try
                 {
-                    medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarMediosPago();
-                    limpiarForm();
+                    if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}")
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}","Metodo,Detalles"))
+                    {
+                        medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
+                        MessageBox.Show("Se insertó correctamente");
+                        MostrarMediosPago();
+                        limpiarForm();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -44,19 +47,22 @@ namespace Presentacion
             {
                 try
                 {
-                    medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarMediosPago();
-                    limpiarForm();
-                    Editar_Medio = false;
+                    if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}")
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}","Metodo,Detalles,Medio de Pago"))
+                    {
+                        medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarMediosPago();
+                        limpiarForm();
+                        Editar_Medio = false;
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("no se pudo editar los datos por: " + ex);
+                    MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
             }
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -69,7 +75,6 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
         private void Borrar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -82,38 +87,24 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
-        private void Buscar_Metodo_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = medioPago.getNombre((int)numericUpDown1.Value);
-        }
-
         private void Medios_Pago_Load(object sender, EventArgs e)
         {
             MostrarMediosPago();
         }
-
         private void MostrarMediosPago()
         {
             conMedio_Pago medio_Pago = new conMedio_Pago();
             dataGridView1.DataSource = medio_Pago.MostrarMediosPago();
         }
-
-        private void Close_Windows(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void limpiarForm()
         {
             txtDetalles.Clear();
             txtMetodo.Clear();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Clientes cliente = new Clientes();
-            cliente.Show();
+            Usuarios usuario = new Usuarios();
+            usuario.Show();
             this.Hide();
         }
     }
