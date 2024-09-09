@@ -41,7 +41,8 @@ namespace Presentacion
             {
                 try
                 {
-                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
+
+                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}","Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
                     {
                         categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
                         MessageBox.Show("se inserto correctamente");
@@ -117,5 +118,5 @@ namespace Presentacion
             pago.Show();
             this.Hide();
         }
-    }
+        }
 }

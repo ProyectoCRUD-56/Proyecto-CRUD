@@ -22,7 +22,6 @@ namespace Presentacion
         {
             InitializeComponent();
         }
-
         private void MostrarUsuarios()
         {
             conUsuario usuario = new conUsuario();
@@ -63,7 +62,6 @@ namespace Presentacion
                 }
             }
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -78,7 +76,6 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
         private void Borrar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -91,12 +88,10 @@ namespace Presentacion
             else
                 MessageBox.Show("seleccione una fila por favor");
         }
-
         private void Usuarios_Load(object sender, EventArgs e)
         {
             MostrarUsuarios();
         }
-
         private void limpiarForm()
         {
             txtNombre.Clear();
@@ -104,7 +99,6 @@ namespace Presentacion
             txtEmail.Clear();
             CbRol.Text = string.Empty;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Clientes cliente = new Clientes();

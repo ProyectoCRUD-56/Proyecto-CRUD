@@ -53,11 +53,15 @@ namespace Negocios
                     if(nombresArray.Length > 1)
                     {
                         mensaje += "Los campos de:\n";
-                        foreach (string nombre in nombresArray){
-                            mensaje += $"{nombre}\n";
-                        }
                     }
-                    MessageBox.Show(mensaje+"solo pueden ser numéricos  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    else
+                    {
+                        mensaje += "El campo de:\n";
+                    }
+                    foreach (string nombre in nombresArray){
+                        mensaje += $"{nombre}\n";
+                    }
+                    MessageBox.Show(mensaje+"solo pueden ser numéricos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
             }
@@ -70,6 +74,7 @@ namespace Negocios
         /// <returns>falso cuando hay campos que contienen caracteres distintos a caracteres de lenguaje, verdadero en caso contrario</returns>
         public bool Validar_solo_letras(string campos, string nombresCampos)
         {
+            nombresCampos = nombresCampos.Replace(" ", "");
             camposArray = campos.Split(',');
             nombresArray = nombresCampos.Split(',');
             mensaje = string.Empty;
@@ -80,12 +85,15 @@ namespace Negocios
                     if (nombresArray.Length > 1)
                     {
                         mensaje += "Los campos de:\n";
-                        foreach (string nombre in nombresArray)
-                        {
-                            mensaje += $"{nombre}\n";
-                        }
                     }
-                    MessageBox.Show(mensaje + "solo pueden contener caracteres de lenguaje  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    {
+                        mensaje += "El campo de:\n";
+                    }
+                    foreach (string nombre in nombresArray)
+                    {
+                        mensaje += $"{nombre}\n";
+                    }
+                    MessageBox.Show(mensaje + "solo pueden contener caracteres de lenguaje", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
             }
