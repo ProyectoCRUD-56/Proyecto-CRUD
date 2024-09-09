@@ -1,4 +1,4 @@
-﻿using crud;
+using crud;
 using Datos;
 using Negocios;
 using System;
@@ -55,10 +55,16 @@ namespace Presentacion
             {
                 try
                 {
-                    if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") && validarSexo(comboBox1.Text))
+
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}")
+                        && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") 
+                        && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") 
+                        && validarSexo(comboBox1.Text)
+                        )
                     {
                         cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo);
-                        MessageBox.Show("se inserto correctamente");
+                        MessageBox.Show("Se insertó correctamente");
+
                         MostrarClientes();
                         limpiarForm();
                     }
@@ -73,10 +79,16 @@ namespace Presentacion
             {
                 try
                 {
-                    if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") || comboBox1.SelectedIndex == -1 && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")&& validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono") && validarSexo(comboBox1.Text))
+
+                    if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") 
+                        || comboBox1.SelectedIndex == -1 
+                        && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
+                        && validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono") 
+                        && validarSexo(comboBox1.Text))
                     {
                         cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);
-                        MessageBox.Show("se edito correctamente");
+                        MessageBox.Show("Se editó correctamente");
+
                         MostrarClientes();
                         limpiarForm();
                         Editar = false;
@@ -111,7 +123,7 @@ namespace Presentacion
                 }
             }
             else
-                MessageBox.Show("seleccione una fila por favor");
+                MessageBox.Show("Seleccione una fila por favor");
         }
 
         private void BorrarBtn_Click(object sender, EventArgs e)
@@ -132,18 +144,8 @@ namespace Presentacion
             frmMain Productos = new frmMain();
             Productos.Show();
             this.Hide();
-        }
-        private bool Validar_solo_letras()
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z]*$") ||
-                !System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-Z]*$"))
-            {
-                return false;
-            }
-            return true;
-        }
+        }     
 
-     
         bool validarSexo(string comboBoxText)
         {
             switch (comboBoxText)

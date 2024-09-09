@@ -44,7 +44,8 @@ CREATE TABLE Clientes --CREACION DE LA TABLA CLIENTES
 CREATE TABLE Roles(
 Id_Rol INT IDENTITY(1,1) PRIMARY KEY,
 Tipo_Rol VARCHAR(20));
- 
+insert into Roles values('admin')
+insert into Usuarios values (1,'Jose Luis','Alvarez','123','josel.alvarez2006@gmail.com','admin',1)
 CREATE TABLE Usuarios
 (
     Id_usuario INT IDENTITY(1,1) PRIMARY KEY,

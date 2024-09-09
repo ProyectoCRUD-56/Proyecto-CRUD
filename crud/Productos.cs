@@ -8,7 +8,7 @@ namespace crud
         private conProducto Producto = new conProducto();
         private string idProducto = null;
         private bool Editar = false;
-        
+        Validaciones valid = new Validaciones();
 
         public frmMain()
         {
@@ -34,25 +34,13 @@ namespace crud
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}","Precio,Stock"))
                     {
-
-                        if (Validar_solo_numero())
-                        {
-
-                            Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text);
-                            MessageBox.Show("se inserto correctamente");
-                            MostrarProductos();
-                            limpiarForm();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El Precio o Stock son incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        Producto.InsertarPRod(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text);
+                        MessageBox.Show("se inserto correctamente");
+                        MostrarProductos();
+                        limpiarForm();
                     }
                 }
                 catch (Exception ex)
@@ -65,38 +53,22 @@ namespace crud
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}", "Precio,Stock"))
                     {
-
-                        if (Validar_solo_numero())
-                        {
-
-                            Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto);
-                            MessageBox.Show("se edito correctamente");
-                            MostrarProductos();
-                            limpiarForm();
-                            Editar = false;
-                        }
-                        else
-                        {
-                            MessageBox.Show("El Precio o Stock son incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        Producto.EditarProd(txtNombre.Text, txtDesc.Text, txtMarca.Text, txtPrecio.Text, txtStock.Text, idProducto);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarProductos();
+                        limpiarForm();
+                        Editar = false;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("no se pudo insertar los datos por: " + ex);
                 }
-            }
-           
-            
+            } 
         }
-
         private void limpiarForm()
         {
             txtDesc.Clear();
@@ -105,7 +77,6 @@ namespace crud
             txtStock.Clear();
             txtNombre.Clear();
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -140,27 +111,6 @@ namespace crud
             Categoria_Producto categoria = new Categoria_Producto();
             categoria.Show();
             this.Hide();
-        }
-        private bool Validar_solo_numero()
-        {
-            if ((System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, @"^\d*$") && (Convert.ToInt32(txtPrecio.Text) > 0 && Convert.ToInt32(txtPrecio.Text) < 100000000)) &&
-                (System.Text.RegularExpressions.Regex.IsMatch(txtStock.Text, @"^\d*$") && (Convert.ToInt32(txtStock.Text) > 0 && Convert.ToInt32(txtStock.Text) < 5000)))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool Validar_campos_vacios()
-        {
-            if (string.IsNullOrEmpty(txtDesc.Text) || string.IsNullOrEmpty(txtMarca.Text)
-                || string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtPrecio.Text)
-                || string.IsNullOrEmpty(txtStock.Text))
-                //|| combo_categoria.SelectedIndex == -1)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }
