@@ -85,18 +85,10 @@ namespace Negocios
                             mensaje += $"{nombre}\n";
                         }
                     }
-                    MessageBox.Show(mensaje+"solo pueden contener caracteres de lenguaje  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(mensaje + "solo pueden contener caracteres de lenguaje  ", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
             }
-            return true;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool Validar_solo_letras_()
-        {
             return true;
         }
     }
