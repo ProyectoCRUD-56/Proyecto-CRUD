@@ -16,6 +16,7 @@ namespace Presentacion
     {
         private conLogin login = new conLogin();
         private bool valido = false;
+        Validaciones valid = new Validaciones();
         public Login()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (valid.Validar_campos_vacios($"{txtUsuario.Text},{ txtContraseña.Text}"))
                     {
                         if (login.Verificar_Usuario(txtUsuario.Text, txtContraseña.Text))
                         {
@@ -50,14 +51,6 @@ namespace Presentacion
                     MessageBox.Show("No se pudo iniciar sesion por: " + ex);
                 }
             }
-        }
-        private bool Validar_campos_vacios()
-        {
-            if (string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrEmpty(txtUsuario.Text))
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

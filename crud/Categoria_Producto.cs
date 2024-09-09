@@ -17,6 +17,7 @@ namespace Presentacion
         private conCategoria_Prod categoria = new conCategoria_Prod();
         private string idCategoria = null;
         private bool Editar_Cate = false;
+        Validaciones validacion = new();
 
         public Categoria_Producto()
         {
@@ -40,25 +41,13 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
                     {
-                        if (Validar_solo_letras())
-                        {
-                            categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
-                            MessageBox.Show("se inserto correctamente");
-                            MostrarCategoria();
-                            limpiarForm();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El nombre es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
+                        MessageBox.Show("se inserto correctamente");
+                        MostrarCategoria();
+                        limpiarForm();
                     }
-                    else
-                    {
-                        MessageBox.Show("Porfavor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-
                 }
                 catch (Exception ex)
                 {
@@ -70,20 +59,13 @@ namespace Presentacion
             {
                 try
                 {
-                    if (Validar_campos_vacios())
+                    if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción") && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}"))
                     {
-                        if (Validar_solo_letras())
-                        {
-                            categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
-                            MessageBox.Show("se edito correctamente");
-                            MostrarCategoria();
-                            limpiarForm();
-                            Editar_Cate = false;
-                        }
-                        else
-                        {
-                            MessageBox.Show("El nombre es incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarCategoria();
+                        limpiarForm();
+                        Editar_Cate = false;
                     }
                     else
                     {
@@ -134,24 +116,6 @@ namespace Presentacion
             Medios_Pago pago = new Medios_Pago();
             pago.Show();
             this.Hide();
-        }
-
-        private bool Validar_campos_vacios()
-        {
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtDesc.Text))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private bool Validar_solo_letras()
-        {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-Z]*$"))
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

@@ -54,20 +54,18 @@
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(272, 0);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(238, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(727, 455);
+            dataGridView1.Size = new Size(526, 325);
             dataGridView1.TabIndex = 10;
             // 
             // button2
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button2.Location = new Point(263, 356);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(12, 330);
             button2.Name = "button2";
-            button2.Size = new Size(128, 47);
+            button2.Size = new Size(88, 35);
             button2.TabIndex = 12;
             button2.Text = "Editar";
             button2.UseVisualStyleBackColor = true;
@@ -76,10 +74,9 @@
             // button3
             // 
             button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button3.Location = new Point(435, 475);
-            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Location = new Point(106, 330);
             button3.Name = "button3";
-            button3.Size = new Size(128, 47);
+            button3.Size = new Size(100, 35);
             button3.TabIndex = 13;
             button3.Text = "Borrar";
             button3.UseVisualStyleBackColor = true;
@@ -89,7 +86,9 @@
             // 
             groupBox1.Controls.Add(combo_categoria);
             groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(txtStock);
             groupBox1.Controls.Add(label4);
@@ -102,10 +101,8 @@
             groupBox1.Controls.Add(txtNombre);
             groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(265, 667);
+            groupBox1.Size = new Size(232, 375);
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
             groupBox1.Text = "Producto";
@@ -113,16 +110,17 @@
             // combo_categoria
             // 
             combo_categoria.FormattingEnabled = true;
-            combo_categoria.Location = new Point(12, 318);
+            combo_categoria.Location = new Point(12, 265);
+            combo_categoria.Margin = new Padding(3, 2, 3, 2);
             combo_categoria.Name = "combo_categoria";
-            combo_categoria.Size = new Size(194, 23);
+            combo_categoria.Size = new Size(170, 23);
             combo_categoria.TabIndex = 24;
             combo_categoria.Text = "Seleccione una opcion:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 300);
+            label8.Location = new Point(6, 204);
             label8.Name = "label8";
             label8.Size = new Size(61, 15);
             label8.TabIndex = 23;
@@ -131,13 +129,10 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.Location = new Point(12, 458);
-            
-            // 
-            // button1
-            // 
+            button1.Location = new Point(12, 292);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(222, 44);
+            button1.Size = new Size(194, 33);
             button1.TabIndex = 22;
             button1.Text = "Guardar";
             button1.UseVisualStyleBackColor = true;
@@ -146,94 +141,90 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 321);
+            label5.Location = new Point(12, 219);
             label5.Name = "label5";
-            label5.Size = new Size(48, 20);
+            label5.Size = new Size(39, 15);
             label5.TabIndex = 21;
             label5.Text = "Stock:";
             // 
             // txtStock
             // 
-            txtStock.Location = new Point(14, 345);
-            txtStock.Margin = new Padding(3, 4, 3, 4);
+            txtStock.Location = new Point(12, 237);
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(221, 27);
+            txtStock.Size = new Size(194, 23);
             txtStock.TabIndex = 20;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(14, 249);
+            label4.Location = new Point(12, 160);
             label4.Name = "label4";
-            label4.Size = new Size(53, 20);
+            label4.Size = new Size(43, 15);
             label4.TabIndex = 19;
             label4.Text = "Precio:";
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(14, 273);
-            txtPrecio.Margin = new Padding(3, 4, 3, 4);
+            txtPrecio.Location = new Point(12, 178);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(221, 27);
+            txtPrecio.Size = new Size(194, 23);
             txtPrecio.TabIndex = 18;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 175);
+            label3.Location = new Point(12, 116);
             label3.Name = "label3";
-            label3.Size = new Size(53, 20);
+            label3.Size = new Size(43, 15);
             label3.TabIndex = 17;
             label3.Text = "Marca:";
             // 
             // txtMarca
             // 
-            txtMarca.Location = new Point(14, 199);
-            txtMarca.Margin = new Padding(3, 4, 3, 4);
+            txtMarca.Location = new Point(12, 134);
             txtMarca.Name = "txtMarca";
-            txtMarca.Size = new Size(221, 27);
+            txtMarca.Size = new Size(194, 23);
             txtMarca.TabIndex = 16;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 104);
+            label2.Location = new Point(12, 72);
             label2.Name = "label2";
-            label2.Size = new Size(90, 20);
+            label2.Size = new Size(72, 15);
             label2.TabIndex = 15;
             label2.Text = "Descripción:";
             // 
             // txtDesc
             // 
-            txtDesc.Location = new Point(14, 128);
-            txtDesc.Margin = new Padding(3, 4, 3, 4);
+            txtDesc.Location = new Point(12, 90);
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new Size(221, 27);
+            txtDesc.Size = new Size(194, 23);
             txtDesc.TabIndex = 14;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 37);
+            label1.Location = new Point(12, 28);
             label1.Name = "label1";
-            label1.Size = new Size(67, 20);
+            label1.Size = new Size(54, 15);
             label1.TabIndex = 13;
             label1.Text = "Nombre:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(14, 61);
-            txtNombre.Margin = new Padding(3, 4, 3, 4);
+            txtNombre.Location = new Point(12, 46);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(221, 27);
+            txtNombre.Size = new Size(194, 23);
             txtNombre.TabIndex = 12;
             // 
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button6.Location = new Point(499, 357);
+            button6.Location = new Point(238, 338);
+            button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
-            button6.Size = new Size(102, 36);
+            button6.Size = new Size(89, 27);
             button6.TabIndex = 15;
             button6.Text = "Categorias";
             button6.UseVisualStyleBackColor = true;
@@ -241,15 +232,12 @@
             // 
             // frmMain
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(874, 500);
+            ClientSize = new Size(765, 375);
             Controls.Add(button6);
             Controls.Add(groupBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
             Controls.Add(dataGridView1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmMain";
             Text = "Productos";
             Load += Form1_Load;

@@ -1,4 +1,5 @@
--- CREATE DATABASE inventario;-- Crea la base de datos Inventario
+--CREATE DATABASE inventario;-- Crea la base de datos Inventario
+
 USE inventario;
                       --/-----------Creacion de las tablas -----------/
 CREATE TABLE Categoria_Producto  --TABLA DE CATEGORIAS

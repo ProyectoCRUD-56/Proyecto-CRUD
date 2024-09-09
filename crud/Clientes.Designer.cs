@@ -85,7 +85,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(193, 23);
             comboBox1.TabIndex = 26;
-            comboBox1.Text = "Seleccione una opcion";
+            comboBox1.Text = "Seleccione una opción";
             // 
             // label7
             // 
