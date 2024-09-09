@@ -1,4 +1,4 @@
-﻿using crud;
+using crud;
 using Datos;
 using Negocios;
 using System;
@@ -55,6 +55,7 @@ namespace Presentacion
             {
                 try
                 {
+
                     if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}")
                         && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") 
                         && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") 
@@ -63,6 +64,7 @@ namespace Presentacion
                     {
                         cliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo);
                         MessageBox.Show("Se insertó correctamente");
+
                         MostrarClientes();
                         limpiarForm();
                     }
@@ -77,6 +79,7 @@ namespace Presentacion
             {
                 try
                 {
+
                     if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") 
                         || comboBox1.SelectedIndex == -1 
                         && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
@@ -85,6 +88,7 @@ namespace Presentacion
                     {
                         cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);
                         MessageBox.Show("Se editó correctamente");
+
                         MostrarClientes();
                         limpiarForm();
                         Editar = false;
@@ -141,6 +145,7 @@ namespace Presentacion
             Productos.Show();
             this.Hide();
         }     
+
         bool validarSexo(string comboBoxText)
         {
             switch (comboBoxText)
