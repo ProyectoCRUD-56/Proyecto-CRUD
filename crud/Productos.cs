@@ -33,7 +33,6 @@ namespace crud
         private void ListarCategorias()
         {
             conProducto objeto = new conProducto();
-            
             combo_categoria.DataSource = objeto.Mostrar_Categoria();
             combo_categoria.DisplayMember = "Nombre";
             combo_categoria.ValueMember = "Id_categoria";
