@@ -39,56 +39,68 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = Color.FromArgb(15, 15, 15);
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, productosToolStripMenuItem, categoriasProductosToolStripMenuItem, metodosDePagoToolStripMenuItem, usuariosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(934, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1067, 30);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // clientesToolStripMenuItem
             // 
+            clientesToolStripMenuItem.BackColor = Color.FromArgb(15, 15, 15);
+            clientesToolStripMenuItem.ForeColor = Color.LightGray;
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(61, 20);
+            clientesToolStripMenuItem.Size = new Size(75, 24);
             clientesToolStripMenuItem.Text = "Clientes";
             clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem
             // 
+            productosToolStripMenuItem.ForeColor = Color.LightGray;
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(73, 20);
+            productosToolStripMenuItem.Size = new Size(89, 24);
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // categoriasProductosToolStripMenuItem
             // 
+            categoriasProductosToolStripMenuItem.ForeColor = Color.LightGray;
             categoriasProductosToolStripMenuItem.Name = "categoriasProductosToolStripMenuItem";
-            categoriasProductosToolStripMenuItem.Size = new Size(132, 20);
+            categoriasProductosToolStripMenuItem.Size = new Size(164, 24);
             categoriasProductosToolStripMenuItem.Text = "Categorias Productos";
             categoriasProductosToolStripMenuItem.Click += categoriasProductosToolStripMenuItem_Click;
             // 
             // metodosDePagoToolStripMenuItem
             // 
+            metodosDePagoToolStripMenuItem.ForeColor = Color.LightGray;
             metodosDePagoToolStripMenuItem.Name = "metodosDePagoToolStripMenuItem";
-            metodosDePagoToolStripMenuItem.Size = new Size(112, 20);
+            metodosDePagoToolStripMenuItem.Size = new Size(140, 24);
             metodosDePagoToolStripMenuItem.Text = "Metodos de Pago";
             metodosDePagoToolStripMenuItem.Click += metodosDePagoToolStripMenuItem_Click;
             // 
             // usuariosToolStripMenuItem
             // 
+            usuariosToolStripMenuItem.ForeColor = Color.LightGray;
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(64, 20);
+            usuariosToolStripMenuItem.Size = new Size(79, 24);
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
             // Menu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(934, 611);
+            BackColor = Color.DarkOliveGreen;
+            ClientSize = new Size(1067, 815);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.None;
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Menu";
             Text = "Menu";
             menuStrip1.ResumeLayout(false);

@@ -20,8 +20,8 @@ namespace Presentacion
         public Login()
         {
             InitializeComponent();
-        }
 
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (valido == false)

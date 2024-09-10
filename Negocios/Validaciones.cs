@@ -31,8 +31,8 @@ namespace Negocios
                     MessageBox.Show("Por favor llene todos los campos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
-              return true;
             }
+            return true;
         }
         /// <summary>
         /// Verifica que en los campos dados solo haya valores numéricos
