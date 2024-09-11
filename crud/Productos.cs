@@ -48,7 +48,8 @@ namespace crud
                 try
                 {
                     if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
-                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}","Precio,Stock"))
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}","Precio,Stock")
+                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}","Nombre,Descripción,Marca","20,35,25"))
                     {
                         if ((combo_categoria.SelectedValue != null))
                         {
@@ -74,7 +75,8 @@ namespace crud
                 try
                 {
                     if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
-                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}", "Precio,Stock"))
+                        && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}", "Precio,Stock")
+                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}", "Nombre,Descripción,Marca", "20,35,25"))
                     {
                         if ((combo_categoria.SelectedValue != null))
                         {

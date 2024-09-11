@@ -17,6 +17,7 @@ namespace Presentacion
         private conUsuario usuario = new conUsuario();
         private string idUsuario = null;
         private bool Editar_usuario = false;
+        Validaciones valid = new();
 
         public Usuarios()
         {
@@ -34,11 +35,16 @@ namespace Presentacion
             if (Editar_usuario == false)
             {
                 try
-                {
-                    usuario.Insertar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarUsuarios();
-                    limpiarForm();
+                {   
+                    if(valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email")
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email","15,20,20,35"))
+                    {
+                        usuario.Insertar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text);
+                        MessageBox.Show("se inserto correctamente");
+                        MostrarUsuarios();
+                        limpiarForm();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -50,11 +56,16 @@ namespace Presentacion
             {
                 try
                 {
-                    usuario.Editar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text, idUsuario);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarUsuarios();
-                    limpiarForm();
-                    Editar_usuario = false;
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email")
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email", "15,20,20,35"))
+                    {
+                        usuario.Editar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text, idUsuario);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarUsuarios();
+                        limpiarForm();
+                        Editar_usuario = false;
+                    }
                 }
                 catch (Exception ex)
                 {

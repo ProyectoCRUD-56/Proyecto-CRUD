@@ -70,7 +70,7 @@ namespace Presentacion
             //autoCompleteCollection.AddRange(categorias.Values.ToArray());
             foreach (DataRow item in listado.Rows)
             {
-                autoCompleteCollection.Add((string)item["Nombre"]);
+                autoCompleteCollection.Add((string)item["Nombre"]+ '_' + item["Id_cliente"].ToString());
             }
 
             textBox.AutoCompleteCustomSource = autoCompleteCollection;
@@ -81,12 +81,10 @@ namespace Presentacion
         private void Listar_Productos(DataTable tabla, TextBox textBox)
         {
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
-            //autoCompleteCollection.AddRange(categorias.Values.ToArray());
             foreach (DataRow item in tabla.Rows)
             {
-                autoCompleteCollection.Add((string)item["Nombre"]);
+                autoCompleteCollection.Add((string)item["Nombre"] + '_' + item["Descripcion"] + '_' + item["Marca"] + '_' + item["Id_producto"].ToString());
             }
-
             textBox.AutoCompleteCustomSource = autoCompleteCollection;
             textBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;

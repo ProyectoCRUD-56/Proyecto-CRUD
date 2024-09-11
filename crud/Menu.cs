@@ -55,8 +55,15 @@ namespace Presentacion
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Usuarios usuario = new Usuarios();
-            usuario.MdiParent= this;
+            usuario.MdiParent = this;
             usuario.Show();
+        }
+
+        private void checkoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factura factura = new Factura();
+            factura.MdiParent = this;
+            factura.Show();
         }
     }
 }

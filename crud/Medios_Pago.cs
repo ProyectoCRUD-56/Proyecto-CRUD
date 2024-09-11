@@ -29,7 +29,8 @@ namespace Presentacion
                 try
                 {
                     if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}")
-                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}","Metodo,Detalles"))
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}","Metodo,Detalles")
+                        && valid.ValidarLargo($"{txtMetodo.Text}, {txtDetalles.Text}", "Metodo,Detalles","15,25"))
                     {
                         medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
                         MessageBox.Show("Se insertó correctamente");
@@ -48,7 +49,8 @@ namespace Presentacion
                 try
                 {
                     if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}")
-                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}","Metodo,Detalles,Medio de Pago"))
+                        && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}, {idMedio_pago}","Metodo,Detalles,Medio de Pago")
+                        && valid.ValidarLargo($"{txtMetodo.Text}, {txtDetalles.Text}", "Metodo,Detalles", "15,25"))
                     {
                         medioPago.Editar_MedioPago(txtMetodo.Text, txtDetalles.Text, idMedio_pago);
                         MessageBox.Show("se edito correctamente");
