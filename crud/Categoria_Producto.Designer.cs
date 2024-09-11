@@ -47,10 +47,9 @@
             button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button6.FlatStyle = FlatStyle.Flat;
             button6.ForeColor = Color.Gray;
-            button6.Location = new Point(542, 463);
-            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Location = new Point(474, 346);
             button6.Name = "button6";
-            button6.Size = new Size(137, 48);
+            button6.Size = new Size(120, 36);
             button6.TabIndex = 20;
             button6.Text = "Medios de Pago";
             button6.UseVisualStyleBackColor = true;
@@ -67,10 +66,8 @@
             groupBox1.Dock = DockStyle.Left;
             groupBox1.ForeColor = Color.LightGray;
             groupBox1.Location = new Point(0, 0);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(265, 667);
+            groupBox1.Size = new Size(232, 393);
             groupBox1.TabIndex = 19;
             groupBox1.TabStop = false;
             groupBox1.Text = "Categoria de Producto";
@@ -80,10 +77,9 @@
             Guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Guardar.FlatStyle = FlatStyle.Flat;
             Guardar.ForeColor = Color.Gray;
-            Guardar.Location = new Point(14, 615);
-            Guardar.Margin = new Padding(3, 4, 3, 4);
+            Guardar.Location = new Point(12, 354);
             Guardar.Name = "Guardar";
-            Guardar.Size = new Size(222, 44);
+            Guardar.Size = new Size(194, 33);
             Guardar.TabIndex = 22;
             Guardar.Text = "Guardar";
             Guardar.UseVisualStyleBackColor = true;
@@ -92,9 +88,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 104);
+            label2.Location = new Point(12, 78);
             label2.Name = "label2";
-            label2.Size = new Size(90, 20);
+            label2.Size = new Size(72, 15);
             label2.TabIndex = 15;
             label2.Text = "Descripción:";
             // 
@@ -103,18 +99,17 @@
             txtDesc.BackColor = Color.FromArgb(15, 15, 15);
             txtDesc.BorderStyle = BorderStyle.FixedSingle;
             txtDesc.ForeColor = Color.LightGray;
-            txtDesc.Location = new Point(14, 128);
-            txtDesc.Margin = new Padding(3, 4, 3, 4);
+            txtDesc.Location = new Point(12, 96);
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new Size(221, 27);
+            txtDesc.Size = new Size(194, 23);
             txtDesc.TabIndex = 14;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 37);
+            label1.Location = new Point(12, 28);
             label1.Name = "label1";
-            label1.Size = new Size(67, 20);
+            label1.Size = new Size(54, 15);
             label1.TabIndex = 13;
             label1.Text = "Nombre:";
             // 
@@ -123,10 +118,9 @@
             txtNombre.BackColor = Color.FromArgb(15, 15, 15);
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
             txtNombre.ForeColor = Color.LightGray;
-            txtNombre.Location = new Point(14, 61);
-            txtNombre.Margin = new Padding(3, 4, 3, 4);
+            txtNombre.Location = new Point(12, 46);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(221, 27);
+            txtNombre.Size = new Size(194, 23);
             txtNombre.TabIndex = 12;
             // 
             // Borrar
@@ -134,10 +128,9 @@
             Borrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Borrar.FlatStyle = FlatStyle.Flat;
             Borrar.ForeColor = Color.Gray;
-            Borrar.Location = new Point(407, 463);
-            Borrar.Margin = new Padding(3, 4, 3, 4);
+            Borrar.Location = new Point(356, 346);
             Borrar.Name = "Borrar";
-            Borrar.Size = new Size(128, 47);
+            Borrar.Size = new Size(112, 35);
             Borrar.TabIndex = 18;
             Borrar.Text = "Borrar";
             Borrar.UseVisualStyleBackColor = true;
@@ -148,10 +141,9 @@
             Editar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Editar.FlatStyle = FlatStyle.Flat;
             Editar.ForeColor = Color.Gray;
-            Editar.Location = new Point(272, 463);
-            Editar.Margin = new Padding(3, 4, 3, 4);
+            Editar.Location = new Point(238, 346);
             Editar.Name = "Editar";
-            Editar.Size = new Size(128, 47);
+            Editar.Size = new Size(112, 35);
             Editar.TabIndex = 17;
             Editar.Text = "Editar";
             Editar.UseVisualStyleBackColor = true;
@@ -162,27 +154,24 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.BackgroundColor = Color.FromArgb(15, 15, 15);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(272, 0);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(238, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(727, 455);
+            dataGridView1.Size = new Size(524, 340);
             dataGridView1.TabIndex = 21;
             // 
             // Categoria_Producto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-
-            ClientSize = new Size(874, 500);
             BackColor = Color.FromArgb(15, 15, 15);
+            ClientSize = new Size(765, 393);
             Controls.Add(dataGridView1);
             Controls.Add(button6);
             Controls.Add(groupBox1);
             Controls.Add(Borrar);
             Controls.Add(Editar);
             ForeColor = Color.LightGray;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Categoria_Producto";
             Text = "Categoria_Producto";
             Load += Categoria_Producto_Load;

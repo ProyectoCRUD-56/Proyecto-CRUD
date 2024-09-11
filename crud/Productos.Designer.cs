@@ -123,18 +123,18 @@
             combo_categoria.FlatStyle = FlatStyle.Flat;
             combo_categoria.ForeColor = Color.Gray;
             combo_categoria.FormattingEnabled = true;
-            combo_categoria.Location = new Point(14, 353);
+            combo_categoria.Location = new Point(14, 348);
             combo_categoria.Name = "combo_categoria";
-            combo_categoria.Size = new Size(194, 28);
+            combo_categoria.Size = new Size(194, 23);
             combo_categoria.TabIndex = 24;
             combo_categoria.Text = "Seleccione una opcion:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 268);
+            label8.Location = new Point(14, 330);
             label8.Name = "label8";
-            label8.Size = new Size(77, 20);
+            label8.Size = new Size(61, 15);
             label8.TabIndex = 23;
             label8.Text = "Categoria:";
             // 
@@ -154,7 +154,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 292);
+            label5.Location = new Point(14, 275);
             label5.Name = "label5";
             label5.Size = new Size(39, 15);
             label5.TabIndex = 21;
@@ -165,7 +165,7 @@
             txtStock.BackColor = Color.FromArgb(15, 15, 15);
             txtStock.BorderStyle = BorderStyle.FixedSingle;
             txtStock.ForeColor = Color.LightGray;
-            txtStock.Location = new Point(14, 316);
+            txtStock.Location = new Point(14, 294);
             txtStock.Margin = new Padding(3, 4, 3, 4);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(194, 23);
