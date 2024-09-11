@@ -17,13 +17,20 @@ namespace Negocios
             tabla = usuario.Mostrar_Usuarios();
             return tabla;
         }
-        public void Insertar_Usuario(int idRol,string nombre,string apellido, string contraseña, string email, string rol)
+
+        public DataTable Mostrar_Roles()
         {
-            usuario.Insertar_Usuarios(idRol, nombre,apellido, contraseña, email, rol);
+            DataTable tabla = new DataTable();
+            tabla = usuario.Mostrar_Roles();
+            return tabla;
         }
-        public void Editar_Usuario(string nombre, string contraseña, string email, string rol, string id)
+        public void Insertar_Usuario(int idRol,string nombre,string apellido, string contraseña, string email)
         {
-            usuario.Editar_Usuario(nombre, contraseña, email, rol, Convert.ToInt32(id));
+            usuario.Insertar_Usuarios(idRol, nombre, apellido, contraseña, email);
+        }
+        public void Editar_Usuario(string nombre,string apellido, string contraseña, string email, int idRol, string id)
+        {
+            usuario.Editar_Usuario(idRol, nombre, contraseña, email, apellido, Convert.ToInt32(id));
         }
         public void Eliminar_Usuario(string id)
         {

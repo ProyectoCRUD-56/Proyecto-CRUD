@@ -44,8 +44,6 @@
             Editar = new Button();
             dataGridView1 = new DataGridView();
             button1 = new Button();
-            label5 = new Label();
-            txtApellido = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -67,10 +65,8 @@
             groupBox1.Dock = DockStyle.Left;
             groupBox1.ForeColor = Color.LightGray;
             groupBox1.Location = new Point(0, 0);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(265, 667);
+            groupBox1.Size = new Size(232, 500);
             groupBox1.TabIndex = 19;
             groupBox1.TabStop = false;
             groupBox1.Text = "Usuarios";
@@ -78,9 +74,9 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 109);
+            label5.Location = new Point(8, 80);
             label5.Name = "label5";
-            label5.Size = new Size(69, 20);
+            label5.Size = new Size(54, 15);
             label5.TabIndex = 25;
             label5.Text = "Apellido:";
             // 
@@ -89,10 +85,9 @@
             txtApellido.BackColor = Color.FromArgb(15, 15, 15);
             txtApellido.BorderStyle = BorderStyle.FixedSingle;
             txtApellido.ForeColor = Color.LightGray;
-            txtApellido.Location = new Point(14, 133);
-            txtApellido.Margin = new Padding(3, 4, 3, 4);
+            txtApellido.Location = new Point(12, 98);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(221, 27);
+            txtApellido.Size = new Size(194, 23);
             txtApellido.TabIndex = 24;
             // 
             // CbRol
@@ -102,10 +97,9 @@
             CbRol.ForeColor = Color.Gray;
             CbRol.FormattingEnabled = true;
             CbRol.Items.AddRange(new object[] { "Administrador", "Empleado" });
-            CbRol.Location = new Point(14, 351);
-            CbRol.Margin = new Padding(3, 4, 3, 4);
+            CbRol.Location = new Point(12, 263);
             CbRol.Name = "CbRol";
-            CbRol.Size = new Size(221, 28);
+            CbRol.Size = new Size(194, 23);
             CbRol.TabIndex = 23;
             CbRol.Tag = "";
             CbRol.Text = "Seleccione una opcion:";
@@ -114,10 +108,9 @@
             // 
             Guardar.FlatStyle = FlatStyle.Flat;
             Guardar.ForeColor = Color.Gray;
-            Guardar.Location = new Point(14, 615);
-            Guardar.Margin = new Padding(3, 4, 3, 4);
+            Guardar.Location = new Point(12, 461);
             Guardar.Name = "Guardar";
-            Guardar.Size = new Size(222, 44);
+            Guardar.Size = new Size(194, 33);
             Guardar.TabIndex = 22;
             Guardar.Text = "Guardar";
             Guardar.UseVisualStyleBackColor = true;
@@ -126,18 +119,18 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(14, 327);
+            label4.Location = new Point(12, 245);
             label4.Name = "label4";
-            label4.Size = new Size(34, 20);
+            label4.Size = new Size(27, 15);
             label4.TabIndex = 19;
             label4.Text = "Rol:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 252);
+            label3.Location = new Point(12, 189);
             label3.Name = "label3";
-            label3.Size = new Size(49, 20);
+            label3.Size = new Size(39, 15);
             label3.TabIndex = 17;
             label3.Text = "Email:";
             // 
@@ -146,18 +139,17 @@
             txtEmail.BackColor = Color.FromArgb(15, 15, 15);
             txtEmail.BorderStyle = BorderStyle.FixedSingle;
             txtEmail.ForeColor = Color.LightGray;
-            txtEmail.Location = new Point(14, 276);
-            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Location = new Point(12, 207);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(221, 27);
+            txtEmail.Size = new Size(194, 23);
             txtEmail.TabIndex = 16;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 181);
+            label2.Location = new Point(12, 136);
             label2.Name = "label2";
-            label2.Size = new Size(86, 20);
+            label2.Size = new Size(70, 15);
             label2.TabIndex = 15;
             label2.Text = "Contraseña:";
             // 
@@ -166,18 +158,17 @@
             txtContraseña.BackColor = Color.FromArgb(15, 15, 15);
             txtContraseña.BorderStyle = BorderStyle.FixedSingle;
             txtContraseña.ForeColor = Color.LightGray;
-            txtContraseña.Location = new Point(14, 205);
-            txtContraseña.Margin = new Padding(3, 4, 3, 4);
+            txtContraseña.Location = new Point(12, 154);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(221, 27);
+            txtContraseña.Size = new Size(194, 23);
             txtContraseña.TabIndex = 14;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 37);
+            label1.Location = new Point(12, 28);
             label1.Name = "label1";
-            label1.Size = new Size(62, 20);
+            label1.Size = new Size(50, 15);
             label1.TabIndex = 13;
             label1.Text = "Usuario:";
             // 
@@ -186,10 +177,9 @@
             txtNombre.BackColor = Color.FromArgb(15, 15, 15);
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
             txtNombre.ForeColor = Color.LightGray;
-            txtNombre.Location = new Point(14, 61);
-            txtNombre.Margin = new Padding(3, 4, 3, 4);
+            txtNombre.Location = new Point(12, 46);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(221, 27);
+            txtNombre.Size = new Size(194, 23);
             txtNombre.TabIndex = 12;
             // 
             // Borrar
@@ -197,10 +187,9 @@
             Borrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Borrar.FlatStyle = FlatStyle.Flat;
             Borrar.ForeColor = Color.Gray;
-            Borrar.Location = new Point(435, 475);
-            Borrar.Margin = new Padding(3, 4, 3, 4);
+            Borrar.Location = new Point(381, 356);
             Borrar.Name = "Borrar";
-            Borrar.Size = new Size(128, 47);
+            Borrar.Size = new Size(112, 35);
             Borrar.TabIndex = 18;
             Borrar.Text = "Borrar";
             Borrar.UseVisualStyleBackColor = true;
@@ -211,10 +200,9 @@
             Editar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Editar.FlatStyle = FlatStyle.Flat;
             Editar.ForeColor = Color.Gray;
-            Editar.Location = new Point(301, 475);
-            Editar.Margin = new Padding(3, 4, 3, 4);
+            Editar.Location = new Point(263, 356);
             Editar.Name = "Editar";
-            Editar.Size = new Size(128, 47);
+            Editar.Size = new Size(112, 35);
             Editar.TabIndex = 17;
             Editar.Text = "Editar";
             Editar.UseVisualStyleBackColor = true;
@@ -225,11 +213,10 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.BackgroundColor = Color.FromArgb(15, 15, 15);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(272, 0);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(238, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(727, 455);
+            dataGridView1.Size = new Size(636, 341);
             dataGridView1.TabIndex = 16;
             // 
             // button1
@@ -237,43 +224,25 @@
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.Gray;
-            button1.Location = new Point(570, 475);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(499, 356);
             button1.Name = "button1";
-            button1.Size = new Size(128, 47);
+            button1.Size = new Size(112, 35);
             button1.TabIndex = 27;
             button1.Text = "Clientes";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(12, 82);
-            label5.Name = "label5";
-            label5.Size = new Size(54, 15);
-            label5.TabIndex = 25;
-            label5.Text = "Apellido:";
-            // 
-            // txtApellido
-            // 
-            txtApellido.Location = new Point(12, 100);
-            txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(194, 23);
-            txtApellido.TabIndex = 24;
-            // 
             // Usuarios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 15, 15);
-            ClientSize = new Size(999, 667);
+            ClientSize = new Size(874, 500);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(Borrar);
             Controls.Add(Editar);
             Controls.Add(dataGridView1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Usuarios";
             Text = "Usuarios";
             Load += Usuarios_Load;

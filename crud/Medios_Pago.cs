@@ -30,7 +30,7 @@ namespace Presentacion
                 {
                     if (valid.Validar_campos_vacios($"{txtMetodo.Text}, {txtDetalles.Text}")
                         && valid.Validar_solo_letras($"{txtMetodo.Text}, {txtDetalles.Text}","Metodo,Detalles")
-                        && valid.ValidarLargo($"{txtMetodo.Text}, {txtDetalles.Text}", "Metodo,Detalles","15,25"))
+                        && valid.ValidarLargo($"{txtMetodo.Text}, {txtDetalles.Text}", "Metodo,Detalles","70,100"))
                     {
                         medioPago.Insertar_MedioPago(txtMetodo.Text, txtDetalles.Text);
                         MessageBox.Show("Se insertó correctamente");

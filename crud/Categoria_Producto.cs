@@ -43,7 +43,7 @@ namespace Presentacion
                 {
                     if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}","Nombre Producto,Descripción") 
                         && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}")
-                        && validacion.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción", "15,25"))
+                        && validacion.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción", "50,100"))
                     {
                         categoria.Insertar_Categoria(txtNombre.Text, txtDesc.Text);
                         MessageBox.Show("se inserto correctamente");
@@ -63,7 +63,7 @@ namespace Presentacion
                 {
                     if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción") 
                         && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}")
-                        && validacion.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción","15,25"))
+                        && validacion.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción","50,100"))
                     {
                         categoria.Editar_Categoria(txtNombre.Text, txtDesc.Text, idCategoria);
                         MessageBox.Show("se edito correctamente");

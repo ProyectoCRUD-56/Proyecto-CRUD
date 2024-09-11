@@ -29,6 +29,16 @@ namespace Presentacion
             dataGridView1.DataSource = usuario.Mostrar_Usuarios();
         }
 
+        private void ListarRoles()
+        {
+            conUsuario objeto = new conUsuario();
+            CbRol.DataSource = objeto.Mostrar_Roles();
+            CbRol.DisplayMember = "Tipo_Rol";
+            CbRol.ValueMember = "Id_Rol";
+            CbRol.SelectedValue = 0;
+            CbRol.Text = "Selecciones una categoria:";
+        }
+
         private void Guardar_Click(object sender, EventArgs e)
         {
             //INSERTAR
@@ -38,11 +48,11 @@ namespace Presentacion
                 {   
                     if(valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
                         && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
-                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email","15,20,20,35"))
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email","60,70,100,100"))
                     {
-                        if (CbRol.SelectedIndex != -1)
+                        if (CbRol.SelectedValue != null)
                         {
-                            usuario.Insertar_Usuario(CbRol.SelectedIndex + 1,txtNombre.Text,txtApellido.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text.ToString());
+                            usuario.Insertar_Usuario((int)CbRol.SelectedValue,txtNombre.Text,txtApellido.Text, txtContraseña.Text, txtEmail.Text);
                             MessageBox.Show("se inserto correctamente");
                             MostrarUsuarios();
                             limpiarForm();
@@ -63,14 +73,20 @@ namespace Presentacion
                 try
                 {
                     if (valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
-                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email")
-                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email", "15,20,20,35"))
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email", "60,70,100,100"))
                     {
-                        usuario.Editar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text, idUsuario);
-                        MessageBox.Show("se edito correctamente");
-                        MostrarUsuarios();
-                        limpiarForm();
-                        Editar_usuario = false;
+                        if (CbRol.SelectedValue != null)
+                        {
+                            usuario.Editar_Usuario(txtNombre.Text,txtApellido.Text, txtContraseña.Text, txtEmail.Text, (int)CbRol.SelectedValue, idUsuario);
+                            MessageBox.Show("se edito correctamente");
+                            MostrarUsuarios();
+                            limpiarForm();
+                            Editar_usuario = false;
+                        } else
+                        {
+                            MessageBox.Show("Por favor selecciona un rol", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -84,11 +100,13 @@ namespace Presentacion
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Editar_usuario = true;
-                txtNombre.Text = dataGridView1.CurrentRow.Cells["NombreUsuario"].Value.ToString();
+                txtNombre.Text = dataGridView1.CurrentRow.Cells["Nombre_Usuario"].Value.ToString();
+                txtApellido.Text = dataGridView1.CurrentRow.Cells["Apellido_Usuario"].Value.ToString();
                 txtContraseña.Text = dataGridView1.CurrentRow.Cells["Contraseña"].Value.ToString();
                 txtEmail.Text = dataGridView1.CurrentRow.Cells["Email"].Value.ToString();
-                CbRol.Text = dataGridView1.CurrentRow.Cells["Rol"].Value.ToString();
+                CbRol.SelectedValue = dataGridView1.CurrentRow.Cells["Id_Rol"].Value.ToString();
                 idUsuario = dataGridView1.CurrentRow.Cells["Id_usuario"].Value.ToString();
+                
             }
             else
                 MessageBox.Show("seleccione una fila por favor");
@@ -108,6 +126,7 @@ namespace Presentacion
         private void Usuarios_Load(object sender, EventArgs e)
         {
             MostrarUsuarios();
+            ListarRoles();
         }
         private void limpiarForm()
         {
