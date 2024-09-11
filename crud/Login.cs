@@ -21,6 +21,34 @@ namespace Presentacion
         public Login()
         {
             InitializeComponent();
+
+        }
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (valido == false)
+            {
+                try
+                {
+                    if (valid.Validar_campos_vacios($"{txtUsuario.Text},{ txtContraseña.Text}"))
+                    {
+                        if (login.Verificar_Usuario(txtUsuario.Text, txtContraseña.Text))
+                        {
+                            MessageBox.Show("Inicio de sesion satisfactorio.");
+                            Menu menu = new Menu();
+                            menu.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario o contraseña incorrectos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo iniciar sesion por: " + ex);
+                }
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

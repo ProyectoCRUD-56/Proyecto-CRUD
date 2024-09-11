@@ -14,12 +14,15 @@ namespace Presentacion
     public partial class Menu : Form
     {
         private int idUsu;
+        
         public Menu(int idUsuario)
         {
             InitializeComponent();
             idUsu = idUsuario;
+
             this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
+        
         private void Close_Windows(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

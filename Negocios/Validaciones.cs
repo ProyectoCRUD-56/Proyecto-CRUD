@@ -41,6 +41,7 @@ namespace Negocios
         /// <param name="campos">un string que contiene los valores de todos los campos a validar separados por comas (sintaxis $"{variable},{variable}"</param>
         /// <param name="nombresCamposNumericos">un string que contiene los nombres de todos los campos a validar separados por comas (sintaxis $"{variable},{variable}"</param>
         /// <returns>falso cuando hay campos que contienen caracteres distintos a caracteres de numericos, verdadero en caso contrario</returns>
+  
         public bool Validar_solo_numero(string campos, string nombresCamposNumericos)
         {
             campos = campos.Replace(" ","");
@@ -109,6 +110,7 @@ namespace Negocios
             }
             return true;
         }
+
         /// <summary>
         /// Verifica que los campos dados no superen su límite de caracteres
         /// </summary>

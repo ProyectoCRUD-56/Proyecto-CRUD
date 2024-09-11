@@ -31,10 +31,12 @@ namespace Negocios
         {
             Productos.Insertar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), categoria);
         }
+      
         public void EditarProd(string nombre, string desc, string marca, string precio, string stock, string id, int categoria)
         {
             Productos.Editar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), Convert.ToInt32(id), categoria);
         }
+      
         public void EliminarPRod(string id)
         {
             Productos.Eliminar(Convert.ToInt32(id));

@@ -29,6 +29,7 @@ namespace crud
             conProducto objeto = new conProducto();
             dataGridView1.DataSource = objeto.MostrarProd();
         }
+        
 
         private void ListarCategorias()
         {
@@ -50,7 +51,7 @@ namespace crud
                 {
                     if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
                         && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}","Precio,Stock")
-                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}","Nombre,Descripción,Marca","20,35,25"))
+                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}","Nombre,Descripciï¿½n,Marca","20,35,25"))
                     {
                         if ((combo_categoria.SelectedValue != null))
                         {
@@ -77,7 +78,7 @@ namespace crud
                 {
                     if (valid.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}, {txtPrecio.Text}, {txtStock.Text}")
                         && valid.Validar_solo_numero($"{txtPrecio.Text}, {txtStock.Text}", "Precio,Stock")
-                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}", "Nombre,Descripción,Marca", "20,35,25"))
+                        && valid.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}, {txtMarca.Text}", "Nombre,Descripciï¿½n,Marca", "20,35,25"))
                     {
                         if ((combo_categoria.SelectedValue != null))
                         {
@@ -109,7 +110,6 @@ namespace crud
             combo_categoria.SelectedValue = 0;
             combo_categoria.Text = "Selecciones una categoria:";
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             conProducto objeto = new conProducto();

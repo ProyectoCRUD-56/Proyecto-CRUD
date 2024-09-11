@@ -23,9 +23,7 @@ namespace Datos
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "select * from Producto where Activo = 1";
             buffer = comando.ExecuteReader();
-            
             tabla.Load(buffer);
-            
             conexion.CerrarConexion();
             return tabla;
         }

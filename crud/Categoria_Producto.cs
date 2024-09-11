@@ -41,7 +41,6 @@ namespace Presentacion
             {
                 try
                 {
-
                     if (validacion.Validar_solo_letras($"{txtNombre.Text}, {txtDesc.Text}","Nombre Producto,Descripción") 
                         && validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtDesc.Text}")
                         && validacion.ValidarLargo($"{txtNombre.Text}, {txtDesc.Text}", "Nombre Producto,Descripción", "15,25"))
