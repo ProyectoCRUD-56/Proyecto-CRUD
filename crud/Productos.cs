@@ -36,7 +36,8 @@ namespace crud
             combo_categoria.DataSource = objeto.Mostrar_Categoria();
             combo_categoria.DisplayMember = "Nombre";
             combo_categoria.ValueMember = "Id_categoria";
-            combo_categoria.Text= "Selecciones una categoria:";
+            combo_categoria.SelectedValue = 0;
+            combo_categoria.Text = "Selecciones una categoria:";
         }
 
         private void Guardar_Click(object sender, EventArgs e)
@@ -105,6 +106,7 @@ namespace crud
             txtPrecio.Clear();
             txtStock.Clear();
             txtNombre.Clear();
+            combo_categoria.SelectedValue = 0;
             combo_categoria.Text = "Selecciones una categoria:";
         }
 

@@ -17,25 +17,32 @@ namespace Presentacion
     {
         DataTable productos,clientes = new DataTable();
         private conFacturas factura = new conFacturas();
-        private ListBox lstSugerencias;
-        private DataGridView dgvResultados;
-        private int idCliente,idProducto, idMetodoPago, idUsuario, numeroCantidad;
+        private int idCliente,idProducto, idUsuario, numeroCantidad;
         private decimal total = 0;
-        public Factura()
+
+        public Factura(int idUsu)
         {
             InitializeComponent();
+            idUsuario = idUsu;
         }
 
         private void Factura_Load(object sender, EventArgs e)
         {
+            //Traer informacion de la base de datos y listarla
             Listar_MetodosPago();
-            //Listar_Productos();
             clientes = factura.Mostrar_Clientes();
             Listar_Clientes(clientes, txtClientes);
             productos = factura.Mostrar_Productos();
             Listar_Productos(productos, txtProductos);
-        }
 
+            // Agregar una columna al datagrid que sea invisible donde se almacene el id del producto
+            DataGridViewTextBoxColumn IDProducto = new DataGridViewTextBoxColumn();
+            IDProducto.Name = "IdProducto";
+            IDProducto.HeaderText = "IdProducto";
+            IDProducto.Visible = false;
+            dataGridView1.Columns.Add(IDProducto);
+        }
+        // Metodo para sumar el subtotal de todo los productos seleccionados en el datagrid
         public void CalcularTotal()
         {
             total = 0;
@@ -46,6 +53,7 @@ namespace Presentacion
             txtTotal.Text = total.ToString();
         }
 
+        //Limpiar campos del formulario
         private void Limpiar()
         {
             txtProductos.Clear();
@@ -53,17 +61,21 @@ namespace Presentacion
             NumCantidad.Value = 0;
             txtTotal.Clear();
             dataGridView1.Rows.Clear();
-            cbMetodosPago.SelectedIndex = 0;
+            cbMetodosPago.SelectedValue = 0;
+            cbMetodosPago.Text = "Selecciona un metodo de pago:";
+            txtClientes.Clear();
         }
-
+        // Metodo para listar todos los datos de los medios de pago en un combobox
         private void Listar_MetodosPago()
         {
             conFacturas objeto = new conFacturas();
             cbMetodosPago.DataSource = objeto.Mostrar_MetodosPago();
             cbMetodosPago.DisplayMember = "Metodo";
             cbMetodosPago.ValueMember = "Id_mediospago";
+            cbMetodosPago.SelectedValue = 0;
             cbMetodosPago.Text = "Selecciona un metodo de pago:";
         }
+        // Metodo para listar los clientes en un textbox con sugerencia
         private void Listar_Clientes(DataTable listado, TextBox textBox)
         {
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
@@ -77,7 +89,7 @@ namespace Presentacion
             textBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
-
+        // Metodo para listar los productos en un textbox con sugerencia
         private void Listar_Productos(DataTable tabla, TextBox textBox)
         {
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
@@ -90,47 +102,63 @@ namespace Presentacion
             textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
+        //Al hacer click en Adicionar, se valida que haya algun producto ingresado y se lista en el datagrid
         private void button1_Click(object sender, EventArgs e)
         {
             string producto = txtProductos.Text;
+            string[] partes = producto.Split('_');
             int numCant = (int)NumCantidad.Value;
             productos = factura.Mostrar_Productos();
 
-            foreach (DataRow item in productos.Rows)
+            if (partes != null && partes.Length > 1)
             {
-                if (producto == (string)item["Nombre"])
+                //Busca en toda la informacion traida de productos y compara si existe el producto ingresado
+                foreach (DataRow item in productos.Rows)
                 {
-                    if (numCant < (int)item["Stock"] && numCant > 0)
+                    if (Convert.ToInt32(partes[partes.Length - 1]) == (int)item["Id_producto"])
                     {
-                        dataGridView1.Rows.Add(item["Nombre"], numCant, (double)item["Precio"], (double)item["Precio"] * numCant);
-                        txtProductos.Clear();
-                        txtPrecio.Clear();
-                        NumCantidad.Value = 0;
-                        CalcularTotal();
-                        break;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay suficientes existencias en stock o la cantidad es cero", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
+                        if (numCant < (int)item["Stock"] && numCant > 0)
+                        {
+                            dataGridView1.Rows.Add(item["Nombre"], numCant, (double)item["Precio"], (double)item["Precio"] * numCant, item["Id_producto"]);
+                            txtProductos.Clear();
+                            txtPrecio.Clear();
+                            NumCantidad.Value = 0;
+                            CalcularTotal();
+                            break;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay suficientes existencias en stock o la cantidad es cero", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            break;
+                        }
                     }
                 }
-            }
+            } else
+            {
+                MessageBox.Show("Debes seleccionar un producto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            } 
         }
 
+        //Metodo para mostrar el precio del producto buscado
         private void txtProductos_Leave(object sender, EventArgs e)
         {
+            string producto = txtProductos.Text;
+            string[] partes = producto.Split('_');
             foreach (DataRow row in productos.Rows)
             {
-                if (string.Equals(row["Nombre"].ToString(), txtProductos.Text.Trim(), StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(row["Id_producto"].ToString(), partes[partes.Length - 1], StringComparison.OrdinalIgnoreCase))
                 {
                     // Si se encuentra coincidencia, mostrar el precio correspondiente en txtPrecio
                     txtPrecio.Text = row["Precio"].ToString();
                     break;
+                } else
+                {
+                    txtPrecio.Text = "0";
                 }
             }
         }
 
+        //Guarda la informacion de factura y crear una transaccion por cada producto ingresado
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             DateTime fecha = DateTime.Now.Date;
@@ -139,31 +167,40 @@ namespace Presentacion
             {
                 if (EncontrarCliente())
                 {
-                    if (dataGridView1.Rows.Count > 1)
+                    if (cbMetodosPago.SelectedValue != null)
                     {
-                        int id = factura.Insertar_Factura(idCliente, 2, fecha, hora, (int)cbMetodosPago.SelectedValue, (float)total);
-
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        if (dataGridView1.Rows.Count > 1)
                         {
-                            if ((row.Cells.Cast<DataGridViewCell>().All(cell => cell.Value != null)))
-                            {
-                                numeroCantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
-                                foreach (DataRow row2 in productos.Rows)
-                                {
-                                    if (row.Cells["Producto"].Value.ToString() == row2["Nombre"].ToString())
-                                    {
-                                        idProducto = Convert.ToInt32(row2["Id_producto"]);
-                                        factura.Insertar_Transaccion(id, idProducto, numeroCantidad);
+                            // Inserta factura en la base de datos, si encuentra algun producto seleccionado
+                            int id = factura.Insertar_Factura(idCliente, idUsuario, fecha, hora, (int)cbMetodosPago.SelectedValue, (float)total);
 
+                            //Recorre todos los productos del data grid y los compara si existen los productos
+                            //Luego insertar la transaccion con los datos correspondientes
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                if ((row.Cells.Cast<DataGridViewCell>().All(cell => cell.Value != null)))
+                                {
+                                    numeroCantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
+                                    foreach (DataRow row2 in productos.Rows)
+                                    {
+                                        if (row.Cells["IdProducto"].Value.ToString() == row2["Id_producto"].ToString())
+                                        {
+                                            idProducto = Convert.ToInt32(row2["Id_producto"]);
+                                            factura.Insertar_Transaccion(id, idProducto, numeroCantidad);
+                                        }
                                     }
                                 }
-                            }   
+                            }
+                            Limpiar();
+                            MessageBox.Show("Se inserto correctamente");
                         }
-                        Limpiar();
-                        MessageBox.Show("Se inserto correctamente");
+                        else
+                        {
+                            MessageBox.Show("No se registra ningun producto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     } else
                     {
-                        MessageBox.Show("No se registra ningun producto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("No se encontró el Metodo de pago", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
@@ -177,34 +214,23 @@ namespace Presentacion
             }
         }
 
+        //Metodo para comparar si el cliente seleccionado existe y pasar su id a la factura
         private bool EncontrarCliente()
         {
-            foreach (DataRow item in clientes.Rows)
+            string cliente = txtClientes.Text;
+            string[] partes = cliente.Split('_');
+            if (partes != null && partes.Length > 1)
             {
-                if (txtClientes.Text == (string)item["Nombre"])
+                foreach (DataRow item in clientes.Rows)
                 {
-                    idCliente = (int)item["Id_cliente"];
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void Encontrar_Productos(DataGridViewRow row, int id)
-        {
-            if ((row.Cells.Cast<DataGridViewCell>().All(cell => cell.Value != null)))
-            {
-                numeroCantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
-                foreach (DataRow row2 in productos.Rows)
-                {
-                    if (row.Cells["Producto"].Value.ToString() == row2["Nombre"].ToString())
+                    if (Convert.ToInt32(partes[partes.Length - 1]) == (int)item["Id_cliente"])
                     {
-                        idProducto = Convert.ToInt32(row2["Id_producto"]);
-                        factura.Insertar_Transaccion(id, idProducto, numeroCantidad);
-
+                        idCliente = (int)item["Id_cliente"];
+                        return true;
                     }
                 }
             }
+            return false;
         }
     }
 }

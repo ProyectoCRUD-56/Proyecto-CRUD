@@ -37,13 +37,19 @@ namespace Presentacion
                 try
                 {   
                     if(valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
-                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email")
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
                         && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email","15,20,20,35"))
                     {
-                        usuario.Insertar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text);
-                        MessageBox.Show("se inserto correctamente");
-                        MostrarUsuarios();
-                        limpiarForm();
+                        if (CbRol.SelectedIndex != -1)
+                        {
+                            usuario.Insertar_Usuario(CbRol.SelectedIndex + 1,txtNombre.Text,txtApellido.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text.ToString());
+                            MessageBox.Show("se inserto correctamente");
+                            MostrarUsuarios();
+                            limpiarForm();
+                        } else
+                        {
+                            MessageBox.Show("Por favor selecciona un rol", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -108,7 +114,8 @@ namespace Presentacion
             txtNombre.Clear();
             txtContraseña.Clear();
             txtEmail.Clear();
-            CbRol.Text = string.Empty;
+            CbRol.SelectedIndex = -1;
+            CbRol.Text = "Selecciona un Rol:";
         }
         private void button1_Click(object sender, EventArgs e)
         {

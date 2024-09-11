@@ -85,8 +85,8 @@
             // checkoutToolStripMenuItem
             // 
             checkoutToolStripMenuItem.Name = "checkoutToolStripMenuItem";
-            checkoutToolStripMenuItem.Size = new Size(70, 20);
-            checkoutToolStripMenuItem.Text = "Checkout";
+            checkoutToolStripMenuItem.Size = new Size(63, 20);
+            checkoutToolStripMenuItem.Text = "Facturas";
             checkoutToolStripMenuItem.Click += checkoutToolStripMenuItem_Click;
             // 
             // Menu

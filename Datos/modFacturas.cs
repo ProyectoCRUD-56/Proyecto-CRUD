@@ -84,7 +84,7 @@ namespace Datos
             comando.CommandText = "insert into Transaccion values (" +
                 "@idFactura," +
                 "@idProducto," +
-                "(select id_historial from Historial_Precios where @idProducto = Id_producto)," +
+                "(select top 1 id_historial from Historial_Precios where @idProducto = Id_producto order by id_historial desc)," +
                 "@cantidad," +
                 "(select Precio from Producto where @idProducto = Id_producto)," +
                 "1)";
