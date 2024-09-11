@@ -9,16 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocios;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Presentacion
 {
     public partial class Factura : Form
     {
-        Dictionary<int, string> clientes = new Dictionary<int, string>();
-        DataTable productos = new DataTable();
+        DataTable productos,clientes = new DataTable();
         private conFacturas factura = new conFacturas();
         private ListBox lstSugerencias;
         private DataGridView dgvResultados;
+        private int idCliente,idProducto, idMetodoPago, idUsuario, numeroCantidad;
+        private decimal total = 0;
         public Factura()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace Presentacion
         private void Factura_Load(object sender, EventArgs e)
         {
             Listar_MetodosPago();
+            //Listar_Productos();
             clientes = factura.Mostrar_Clientes();
             Listar_Clientes(clientes, txtClientes);
             productos = factura.Mostrar_Productos();
@@ -35,7 +38,7 @@ namespace Presentacion
 
         public void CalcularTotal()
         {
-            decimal total = 0;
+            total = 0;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 total += Convert.ToDecimal(row.Cells["Subtotal"].Value);
@@ -48,6 +51,9 @@ namespace Presentacion
             txtProductos.Clear();
             txtPrecio.Clear();
             NumCantidad.Value = 0;
+            txtTotal.Clear();
+            dataGridView1.Rows.Clear();
+            cbMetodosPago.SelectedIndex = 0;
         }
 
         private void Listar_MetodosPago()
@@ -58,14 +64,13 @@ namespace Presentacion
             cbMetodosPago.ValueMember = "Id_mediospago";
             cbMetodosPago.Text = "Selecciona un metodo de pago:";
         }
-
-        private void Listar_Clientes(Dictionary<int, string> listado, TextBox textBox)
+        private void Listar_Clientes(DataTable listado, TextBox textBox)
         {
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
             //autoCompleteCollection.AddRange(categorias.Values.ToArray());
-            foreach (var item in listado)
+            foreach (DataRow item in listado.Rows)
             {
-                autoCompleteCollection.Add(item.Value);
+                autoCompleteCollection.Add((string)item["Nombre"]);
             }
 
             textBox.AutoCompleteCustomSource = autoCompleteCollection;
@@ -100,7 +105,9 @@ namespace Presentacion
                     if (numCant < (int)item["Stock"] && numCant > 0)
                     {
                         dataGridView1.Rows.Add(item["Nombre"], numCant, (double)item["Precio"], (double)item["Precio"] * numCant);
-                        Limpiar();
+                        txtProductos.Clear();
+                        txtPrecio.Clear();
+                        NumCantidad.Value = 0;
                         CalcularTotal();
                         break;
                     }
@@ -111,21 +118,93 @@ namespace Presentacion
                     }
                 }
             }
-            
         }
 
         private void txtProductos_Leave(object sender, EventArgs e)
         {
-            bool encontrado = false;
-
             foreach (DataRow row in productos.Rows)
             {
-                if (string.Equals(row["Nombre"].ToString().Trim(), txtProductos.Text.Trim(), StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(row["Nombre"].ToString(), txtProductos.Text.Trim(), StringComparison.OrdinalIgnoreCase))
                 {
                     // Si se encuentra coincidencia, mostrar el precio correspondiente en txtPrecio
                     txtPrecio.Text = row["Precio"].ToString();
-                    encontrado = true;
                     break;
+                }
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            DateTime fecha = DateTime.Now.Date;
+            TimeSpan hora = DateTime.Now.TimeOfDay;
+            try
+            {
+                if (EncontrarCliente())
+                {
+                    if (dataGridView1.Rows.Count > 1)
+                    {
+                        int id = factura.Insertar_Factura(idCliente, 2, fecha, hora, (int)cbMetodosPago.SelectedValue, (float)total);
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if ((row.Cells.Cast<DataGridViewCell>().All(cell => cell.Value != null)))
+                            {
+                                numeroCantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
+                                foreach (DataRow row2 in productos.Rows)
+                                {
+                                    if (row.Cells["Producto"].Value.ToString() == row2["Nombre"].ToString())
+                                    {
+                                        idProducto = Convert.ToInt32(row2["Id_producto"]);
+                                        factura.Insertar_Transaccion(id, idProducto, numeroCantidad);
+
+                                    }
+                                }
+                            }   
+                        }
+                        Limpiar();
+                        MessageBox.Show("Se inserto correctamente");
+                    } else
+                    {
+                        MessageBox.Show("No se registra ningun producto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el cliente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo insertar los datos por: " + ex);
+            }
+        }
+
+        private bool EncontrarCliente()
+        {
+            foreach (DataRow item in clientes.Rows)
+            {
+                if (txtClientes.Text == (string)item["Nombre"])
+                {
+                    idCliente = (int)item["Id_cliente"];
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void Encontrar_Productos(DataGridViewRow row, int id)
+        {
+            if ((row.Cells.Cast<DataGridViewCell>().All(cell => cell.Value != null)))
+            {
+                numeroCantidad = Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
+                foreach (DataRow row2 in productos.Rows)
+                {
+                    if (row.Cells["Producto"].Value.ToString() == row2["Nombre"].ToString())
+                    {
+                        idProducto = Convert.ToInt32(row2["Id_producto"]);
+                        factura.Insertar_Transaccion(id, idProducto, numeroCantidad);
+
+                    }
                 }
             }
         }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            button2 = new Button();
+            btnGuardar = new Button();
             cbMetodosPago = new ComboBox();
             txtClientes = new TextBox();
             txtProductos = new TextBox();
@@ -63,15 +63,16 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
+            // btnGuardar
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.Location = new Point(687, 401);
-            button2.Name = "button2";
-            button2.Size = new Size(101, 37);
-            button2.TabIndex = 1;
-            button2.Text = "Guardar";
-            button2.UseVisualStyleBackColor = true;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGuardar.Location = new Point(687, 401);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(101, 37);
+            btnGuardar.TabIndex = 1;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // cbMetodosPago
             // 
@@ -112,9 +113,10 @@
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(643, 375);
+            label3.Font = new Font("Segoe UI", 11F);
+            label3.Location = new Point(643, 372);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(49, 20);
             label3.TabIndex = 7;
             label3.Text = "Total: ";
             // 
@@ -138,6 +140,7 @@
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Producto, Cantidad, Tarifa, SubTotal });
             dataGridView1.Location = new Point(18, 184);
@@ -229,7 +232,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(txtTotal);
             Controls.Add(label3);
-            Controls.Add(button2);
+            Controls.Add(btnGuardar);
             Name = "Factura";
             Text = "Factura";
             Load += Factura_Load;
@@ -244,7 +247,7 @@
         #endregion
 
         private Button button1;
-        private Button button2;
+        private Button btnGuardar;
         private ComboBox cbMetodosPago;
         private TextBox txtClientes;
         private TextBox txtProductos;
