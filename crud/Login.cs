@@ -30,7 +30,7 @@ namespace Presentacion
                         idUsuario = login.Verificar_Usuario(txtUsuario.Text, contraseña).Item1;
                         idRol = login.Verificar_Usuario(txtUsuario.Text, contraseña).Item2;
 
-                        if (idRol == 1)
+                        if (idRol == 1 || idRol == 2)
                         {
                             MessageBox.Show("Inicio de sesion satisfactorio.");
                             Menu menu = new Menu(idUsuario);
