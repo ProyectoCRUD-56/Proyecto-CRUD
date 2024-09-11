@@ -10,7 +10,7 @@ namespace Datos
 {
     public class Conexion
     {
-        private SqlConnection dbConexion = new SqlConnection("Server=JUANP;Database=inventarioBD;Trusted_Connection=True;");
+        private SqlConnection dbConexion = new SqlConnection("server=DESKTOP-MBKNL6F\\SQLEXPRESS;Database=inventario4;Trusted_Connection=True;");
 
         public SqlConnection AbrirConexion()
         {

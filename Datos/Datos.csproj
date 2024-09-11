@@ -54,6 +54,7 @@
     <Compile Include="modProductos.cs" />
     <Compile Include="modUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

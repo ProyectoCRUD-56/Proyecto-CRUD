@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos
 {
@@ -15,24 +9,29 @@ namespace Datos
         SqlDataReader buffer;
         SqlCommand comando = new SqlCommand();
         bool esValido = false;
-        DataTable tabla = new DataTable();
-        private int idUsuario,idRol;
 
-        public (int,int) Verificar_Usuario(string usuario, string contraseña)
+        public bool Verificar_Usuario(string usuario, string contraseña)
         {
+            // Generar el hash de la contraseña usando la clase Seguridad
+            string hashedPassword = Seguridad.HashPassword(contraseña);
+
             comando.Connection = conexion.AbrirConexion();
-            comando.Parameters.Clear();
-            comando.CommandText = "SELECT Id_usuario,Id_Rol FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contraseña AND Activo = 1";
+            comando.CommandText = "SELECT COUNT(*) FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contraseña AND Activo = 1";
             comando.Parameters.AddWithValue("@usuario", usuario);
-            comando.Parameters.AddWithValue("@contraseña", contraseña);
-            SqlDataReader reader = comando.ExecuteReader();
-            if (reader.Read())
+            comando.Parameters.AddWithValue("@contraseña", hashedPassword);  // Usar el hash calculado
+            try
             {
-                idUsuario = Convert.ToInt32(reader["Id_usuario"]);
-                idRol = Convert.ToInt32(reader["Id_Rol"]);
+                int count = (int)comando.ExecuteScalar();
+                esValido = (count > 0);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
             conexion.CerrarConexion();
-            return (idUsuario, idRol);
+            return esValido;
         }
     }
 }

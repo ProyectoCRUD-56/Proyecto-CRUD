@@ -13,16 +13,11 @@ namespace Presentacion
 {
     public partial class Menu : Form
     {
-        private int idUsu;
-        
-        public Menu(int idUsuario)
+        public Menu()
         {
             InitializeComponent();
-            idUsu = idUsuario;
-
             this.FormClosed += new FormClosedEventHandler(Close_Windows);
         }
-        
         private void Close_Windows(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -62,13 +57,6 @@ namespace Presentacion
             Usuarios usuario = new Usuarios();
             usuario.MdiParent = this;
             usuario.Show();
-        }
-
-        private void checkoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Factura factura = new Factura(idUsu);
-            factura.MdiParent = this;
-            factura.Show();
         }
     }
 }
