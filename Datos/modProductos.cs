@@ -16,23 +16,35 @@ namespace Datos
         SqlDataReader buffer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
+        SqlDataAdapter adapter1 = new SqlDataAdapter();
 
         public DataTable Mostrar()
         {
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "select * from Producto where Activo = 1";
             buffer = comando.ExecuteReader();
-            
             tabla.Load(buffer);
-            
             conexion.CerrarConexion();
             return tabla;
         }
 
-        public void Insertar_Productos(string nombre, string desc, string marca, double precio, int stock)
+        public DataTable Mostrar_Categorias()
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "insert into Producto values (1,@nombre,@descrip,@marca,@precio,@stock,1)";            
+            comando.CommandText = "select * from Categoria_Producto where Activo = 1";
+            using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+            {
+                adapter.Fill(tabla);
+            }
+            conexion.CerrarConexion();
+            return tabla;
+        }
+
+        public void Insertar_Productos(string nombre, string desc, string marca, double precio, int stock, int categoria)
+        {
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "insert into Producto values (@categoria,@nombre,@descrip,@marca,@precio,@stock,1)";
+            comando.Parameters.AddWithValue("@categoria", categoria);
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@descrip", desc);
             comando.Parameters.AddWithValue("@Marca", marca);
@@ -43,11 +55,12 @@ namespace Datos
             conexion.CerrarConexion();
         }
 
-        public void Editar_Productos(string nombre, string desc, string marca, double precio, int stock, int id)
+        public void Editar_Productos(string nombre, string desc, string marca, double precio, int stock, int id, int categoria)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "update Producto set Nombre=@nombre, Descripcion=@descrip, Marca=@marca, Precio=@precio, Stock=@stock where Id=@id";
+            comando.CommandText = "update Producto set IdCategoria=@categoria, Nombre=@nombre, Descripcion=@descrip, Marca=@marca, Precio=@precio, Stock=@stock where Id_producto=@id";
             comando.CommandType = CommandType.Text;
+            comando.Parameters.AddWithValue("@categoria", categoria);
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@descrip", desc);
             comando.Parameters.AddWithValue("@Marca", marca);

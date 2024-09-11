@@ -44,6 +44,8 @@
             Editar = new Button();
             dataGridView1 = new DataGridView();
             button1 = new Button();
+            label5 = new Label();
+            txtApellido = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -243,6 +245,22 @@
             button1.Text = "Clientes";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 82);
+            label5.Name = "label5";
+            label5.Size = new Size(54, 15);
+            label5.TabIndex = 25;
+            label5.Text = "Apellido:";
+            // 
+            // txtApellido
+            // 
+            txtApellido.Location = new Point(12, 100);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(194, 23);
+            txtApellido.TabIndex = 24;
             // 
             // Usuarios
             // 

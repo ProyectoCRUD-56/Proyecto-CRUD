@@ -31,10 +31,5 @@ namespace Negocios
         {
             clientes.EliminarCliente(Convert.ToInt32(id));
         }
-
-        public int ContarCliente()
-        {
-            return clientes.contarCliente();
-        }
     }
 }

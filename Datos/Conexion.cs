@@ -10,9 +10,8 @@ namespace Datos
 {
     public class Conexion
     {
+        private SqlConnection dbConexion = new SqlConnection("Server=JUANP;Database=inventarioBD;Trusted_Connection=True;");
 
-
-        private SqlConnection dbConexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=inventario;Trusted_Connection=True;");
         public SqlConnection AbrirConexion()
         {
             if (dbConexion.State == ConnectionState.Closed)

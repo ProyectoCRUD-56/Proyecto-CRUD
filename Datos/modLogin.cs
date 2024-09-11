@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,26 +15,24 @@ namespace Datos
         SqlDataReader buffer;
         SqlCommand comando = new SqlCommand();
         bool esValido = false;
+        DataTable tabla = new DataTable();
+        private int idUsuario,idRol;
 
-        public bool Verificar_Usuario(string usuario, string contraseña)
+        public (int,int) Verificar_Usuario(string usuario, string contraseña)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SELECT COUNT(*) FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contraseña AND Activo = 1";
+            comando.Parameters.Clear();
+            comando.CommandText = "SELECT Id_usuario,Id_Rol FROM Usuarios WHERE Nombre_Usuario = @usuario AND Contraseña = @contraseña AND Activo = 1";
             comando.Parameters.AddWithValue("@usuario", usuario);
             comando.Parameters.AddWithValue("@contraseña", contraseña);
-            try
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.Read())
             {
-                int count = (int)comando.ExecuteScalar();
-                esValido = (count > 0);
+                idUsuario = Convert.ToInt32(reader["Id_usuario"]);
+                idRol = Convert.ToInt32(reader["Id_Rol"]);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
             conexion.CerrarConexion();
-            return esValido;
+            return (idUsuario, idRol);
         }
     }
 }

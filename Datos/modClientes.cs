@@ -28,15 +28,6 @@ namespace Datos
             return tabla;
         }
 
-        public Int32 contarCliente()
-        {
-            comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "select count(*) as cuenta from Clientes";
-            Int32 cont = (Int32)comando.ExecuteScalar();
-            conexion.CerrarConexion();
-            return cont;
-        }
-
         public void InsertarCliente(string nombre, string apellido, string direccion, string telefono, string email, string cedula, string sexo)
         {
             comando.Connection = conexion.AbrirConexion();

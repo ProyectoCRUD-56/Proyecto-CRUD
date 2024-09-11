@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="conCategoria_Prod.cs" />
     <Compile Include="conCliente.cs" />
+    <Compile Include="conFacturas.cs" />
     <Compile Include="conLogin.cs" />
     <Compile Include="conMedio_Pago.cs" />
     <Compile Include="conProducto.cs" />

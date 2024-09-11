@@ -27,10 +27,12 @@ namespace Datos
 
         }
 
-        public void Insertar_Usuarios(string nombre, string contraseña, string email, string rol)
+        public void Insertar_Usuarios(int idRol,string nombre, string apellido, string contraseña, string email, string rol)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "insert into Usuarios values (@nombre,@contraseña,@email,@rol,1)";
+            comando.CommandText = "insert into Usuarios values (@idRol,@nombre,@apellido,@contraseña,@email,@rol,1)";
+            comando.Parameters.AddWithValue("@idRol", idRol);
+            comando.Parameters.AddWithValue("@apellido", apellido);
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@contraseña", contraseña);
             comando.Parameters.AddWithValue("@email", email);

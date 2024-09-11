@@ -42,17 +42,17 @@ CREATE TABLE Clientes --CREACION DE LA TABLA CLIENTES
     Activo BIT DEFAULT 1 
 );
 CREATE TABLE Roles(
-Id_Rol INT IDENTITY(1,1) PRIMARY KEY,
-Tipo_Rol VARCHAR(20));
-insert into Roles values('admin')
-insert into Usuarios values (1,'Jose Luis','Alvarez','123','josel.alvarez2006@gmail.com','admin',1)
+	Id_Rol INT IDENTITY(1,1) PRIMARY KEY,
+	Tipo_Rol VARCHAR(20)
+);
+
 CREATE TABLE Usuarios
 (
     Id_usuario INT IDENTITY(1,1) PRIMARY KEY,
 	Id_Rol INT FOREIGN KEY REFERENCES Roles(Id_Rol),
     Nombre_Usuario NVARCHAR(15) NOT NULL,
 	Apellido_usuario NVARCHAR(20) NOT NULL,
-    Contraseña NVARCHAR(20) NOT NULL,
+    ContraseÃ±a NVARCHAR(20) NOT NULL,
     Email NVARCHAR(35),
     Rol NVARCHAR(15),
     Activo BIT DEFAULT 1 
@@ -73,10 +73,10 @@ CREATE TABLE Factura
 CREATE TABLE Historial_Precios
 (
     Id_historial INT IDENTITY(1,1) PRIMARY KEY,
-    Id_producto INT FOREIGN KEY REFERENCES Producto(Id_producto), -- Relación con Producto
+    Id_producto INT FOREIGN KEY REFERENCES Producto(Id_producto), -- RelaciÃ³n con Producto
     Precio FLOAT NOT NULL, -- Precio vigente
     Fecha_inicio DATE NOT NULL, -- Fecha en que comienza a regir este precio
-    Fecha_fin DATE NULL, -- Fecha en que deja de ser vigente este precio (NULL si aún está vigente)
+    Fecha_fin DATE NULL, -- Fecha en que deja de ser vigente este precio (NULL si aÃºn estÃ¡ vigente)
     Activo BIT DEFAULT 1
 );
 CREATE TABLE Transaccion 
@@ -86,7 +86,7 @@ CREATE TABLE Transaccion
     Id_producto INT FOREIGN KEY REFERENCES Producto(Id_producto),
 	Id_historia INT FOREIGN KEY REFERENCES Historial_Precios(Id_historial),
     Cantidad INT NOT NULL,
-    PrecioUnitario FLOAT NOT NULL, -- Precio al momento de la transacciòn
+    PrecioUnitario FLOAT NOT NULL, -- Precio al momento de la transacciÃ²n
     SubTotal AS (Cantidad * PrecioUnitario),
     Activo BIT DEFAULT 1 
 );
@@ -105,7 +105,7 @@ BEGIN
     DECLARE @Nuevo_Precio FLOAT;
     DECLARE @FechaInicio DATE = GETDATE();
 
-    -- Obtener el Id_producto y el nuevo precio de la actualización
+    -- Obtener el Id_producto y el nuevo precio de la actualizaciÃ³n
     SELECT @Id_producto = INSERTED.Id_producto, @Nuevo_Precio = INSERTED.Precio
     FROM INSERTED;
 

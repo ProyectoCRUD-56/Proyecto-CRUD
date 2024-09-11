@@ -58,7 +58,9 @@ namespace Presentacion
 
                     if (validacion.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}")
                         && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}","Nombre,Apellido") 
-                        && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono") 
+                        && validacion.Validar_solo_numero($"{txtCedula.Text}, {txtTelefono.Text}", "Cedula,Telefono")
+                        && validacion.ValidarLargo($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}",
+                        "Nombre,Apellido,Cedula,Correo,Direccion,Telefono","15,25,12,60,35,12")
                         && validarSexo(comboBox1.Text)
                         )
                     {
@@ -83,7 +85,9 @@ namespace Presentacion
                     if (validacion.Validar_campos_vacios($"{txtNombre.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}") 
                         || comboBox1.SelectedIndex == -1 
                         && validacion.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
-                        && validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono") 
+                        && validacion.Validar_solo_numero($"{txtCedula.Text},{txtTelefono.Text}", "Cedula,Telefono")
+                        && validacion.ValidarLargo($"{txtNombre.Text},{txtApellido.Text}, {txtCedula.Text}, {txtCorreo.Text}, {txtDireccion.Text}, {txtTelefono.Text}",
+                        "Nombre,Apellido,Cedula,Correo,Direccion,Telefono", "15,25,12,60,35,12")
                         && validarSexo(comboBox1.Text))
                     {
                         cliente.EditarCliente(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtTelefono.Text, txtCorreo.Text, txtCedula.Text, sexo, idCliente);

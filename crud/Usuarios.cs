@@ -17,6 +17,7 @@ namespace Presentacion
         private conUsuario usuario = new conUsuario();
         private string idUsuario = null;
         private bool Editar_usuario = false;
+        Validaciones valid = new();
 
         public Usuarios()
         {
@@ -34,11 +35,22 @@ namespace Presentacion
             if (Editar_usuario == false)
             {
                 try
-                {
-                    usuario.Insertar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text);
-                    MessageBox.Show("se inserto correctamente");
-                    MostrarUsuarios();
-                    limpiarForm();
+                {   
+                    if(valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text}", "Nombre,Apellido")
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email","15,20,20,35"))
+                    {
+                        if (CbRol.SelectedIndex != -1)
+                        {
+                            usuario.Insertar_Usuario(CbRol.SelectedIndex + 1,txtNombre.Text,txtApellido.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text.ToString());
+                            MessageBox.Show("se inserto correctamente");
+                            MostrarUsuarios();
+                            limpiarForm();
+                        } else
+                        {
+                            MessageBox.Show("Por favor selecciona un rol", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -50,11 +62,16 @@ namespace Presentacion
             {
                 try
                 {
-                    usuario.Editar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text, idUsuario);
-                    MessageBox.Show("se edito correctamente");
-                    MostrarUsuarios();
-                    limpiarForm();
-                    Editar_usuario = false;
+                    if (valid.Validar_campos_vacios($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}")
+                        && valid.Validar_solo_letras($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email")
+                        && valid.ValidarLargo($"{txtNombre.Text},{txtApellido.Text},{txtContraseña.Text}, {txtEmail.Text}", "Nombre,Apellido,Contraseña,Email", "15,20,20,35"))
+                    {
+                        usuario.Editar_Usuario(txtNombre.Text, txtContraseña.Text, txtEmail.Text, CbRol.Text, idUsuario);
+                        MessageBox.Show("se edito correctamente");
+                        MostrarUsuarios();
+                        limpiarForm();
+                        Editar_usuario = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +114,8 @@ namespace Presentacion
             txtNombre.Clear();
             txtContraseña.Clear();
             txtEmail.Clear();
-            CbRol.Text = string.Empty;
+            CbRol.SelectedIndex = -1;
+            CbRol.Text = "Selecciona un Rol:";
         }
         private void button1_Click(object sender, EventArgs e)
         {

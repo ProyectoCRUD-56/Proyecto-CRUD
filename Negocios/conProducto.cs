@@ -16,19 +16,27 @@ namespace Negocios
         public DataTable MostrarProd()
         {
             DataTable tabla = new DataTable();
-            List<string> combobox = new List<string>();
             tabla = Productos.Mostrar();
             return tabla;
         }
+
+        public DataTable Mostrar_Categoria()
+        {
+            DataTable tabla = new DataTable();
+            tabla = Productos.Mostrar_Categorias();
+            return tabla;
+        }
+
+        public void InsertarPRod(string nombre, string desc, string marca, string precio, string stock, int categoria)
+        {
+            Productos.Insertar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), categoria);
+        }
       
-        public void InsertarPRod(string nombre, string desc, string marca, string precio, string stock)
+        public void EditarProd(string nombre, string desc, string marca, string precio, string stock, string id, int categoria)
         {
-            Productos.Insertar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock));
+            Productos.Editar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), Convert.ToInt32(id), categoria);
         }
-        public void EditarProd(string nombre, string desc, string marca, string precio, string stock, string id)
-        {
-            Productos.Editar_Productos(nombre, desc, marca, Convert.ToDouble(precio), Convert.ToInt32(stock), Convert.ToInt32(id));
-        }
+      
         public void EliminarPRod(string id)
         {
             Productos.Eliminar(Convert.ToInt32(id));

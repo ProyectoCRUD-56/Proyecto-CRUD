@@ -17,9 +17,9 @@ namespace Negocios
             tabla = usuario.Mostrar_Usuarios();
             return tabla;
         }
-        public void Insertar_Usuario(string nombre, string contraseña, string email, string rol)
+        public void Insertar_Usuario(int idRol,string nombre,string apellido, string contraseña, string email, string rol)
         {
-            usuario.Insertar_Usuarios(nombre, contraseña, email, rol);
+            usuario.Insertar_Usuarios(idRol, nombre,apellido, contraseña, email, rol);
         }
         public void Editar_Usuario(string nombre, string contraseña, string email, string rol, string id)
         {

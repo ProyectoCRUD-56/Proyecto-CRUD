@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,14 @@ namespace Negocios
 {
     public class conLogin
     {
-        private bool validar = false;
+        private int idUsuario, idRol;
         private modLogin login = new modLogin();
-        public bool Verificar_Usuario(string usuario, string contraseña)
+
+        public (int,int) Verificar_Usuario(string usuario, string contraseña)
         {
-            return login.Verificar_Usuario(usuario, contraseña);
+            idUsuario = login.Verificar_Usuario(usuario, contraseña).Item1;
+            idRol = login.Verificar_Usuario(usuario, contraseña).Item2;
+            return (idUsuario,idRol);
         }
     }
 }

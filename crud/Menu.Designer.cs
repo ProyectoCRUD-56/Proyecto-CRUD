@@ -34,14 +34,15 @@
             categoriasProductosToolStripMenuItem = new ToolStripMenuItem();
             metodosDePagoToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
+            checkoutToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, productosToolStripMenuItem, categoriasProductosToolStripMenuItem, metodosDePagoToolStripMenuItem, usuariosToolStripMenuItem, checkoutToolStripMenuItem });
             menuStrip1.BackColor = Color.FromArgb(15, 15, 15);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, productosToolStripMenuItem, categoriasProductosToolStripMenuItem, metodosDePagoToolStripMenuItem, usuariosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
@@ -90,6 +91,14 @@
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
             // 
+            // checkoutToolStripMenuItem
+            // 
+            checkoutToolStripMenuItem.ForeColor = Color.LightGray;
+            checkoutToolStripMenuItem.Name = "checkoutToolStripMenuItem";
+            checkoutToolStripMenuItem.Size = new Size(63, 20);
+            checkoutToolStripMenuItem.Text = "Facturas";
+            checkoutToolStripMenuItem.Click += checkoutToolStripMenuItem_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -107,6 +116,10 @@
             menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
+            // 
+            // Menu
+            // 
+            
         }
 
         #endregion
@@ -117,5 +130,6 @@
         private ToolStripMenuItem categoriasProductosToolStripMenuItem;
         private ToolStripMenuItem metodosDePagoToolStripMenuItem;
         private ToolStripMenuItem usuariosToolStripMenuItem;
+        private ToolStripMenuItem checkoutToolStripMenuItem;
     }
 }
